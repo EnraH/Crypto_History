@@ -11,6 +11,7 @@
   \usepackage[latin1]{inputenc}
   \usepackage[orientation=portrait,size=a0,scale=1.4,debug]{beamerposter}
   \usepackage{tikz}
+  \usetikzlibrary{calc}
   \usefonttheme{professionalfonts}
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
@@ -45,8 +46,37 @@
       \end{figure}
       \alert{Cryptography} hidding content of a message without hiding the writing itself.
     \end{block}
+    \begin{block}{\large The Scheme of Cryptography}
+    \begin{figure}
+      \begin{tikzpicture}[scale=0.9]
+      \coordinate (plaintext1) at (0.,-1);
+      \coordinate (plaintext2) at (10.,-1);
+      \coordinate (key1) at (0.,1);
+      \coordinate (key2) at (10,1);
+      \coordinate (cipher_algorithm) at (2,0);
+      \coordinate (decipher_algorithm) at (8,0);
+      \coordinate (ciphertext) at (5,0);
+      \filldraw[very thick,color=blue!70!black!90, fill=blue!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{(3.6,-2.2) (3.6,2.2) (6.4,2.2) (6.4,-2.2)};
+       \foreach \y in {-4,...,4}
+                 \draw (3.8,0.5*\y)--(6.2,0.5*\y);
+      \filldraw[very thick,color=red!70!black!90, fill=red!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(plaintext1)+ (-1.4,-2.2)$) ($(plaintext1)+ (-1.4,2.2)$) ($(plaintext1)+ (1.4,2.2)$) ($(plaintext1)+ (1.4,-2.2)$)};
+       \foreach \y in {-4,...,4}
+                 \draw ($(plaintext1)+(-1.2,0.5*\y)$)--($(plaintext1)+(1.2,0.5*\y)$);
+      \filldraw[very thick,color=red!70!black!90, fill=red!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(plaintext2)+ (-1.4,-2.2)$) ($(plaintext2)+ (-1.4,2.2)$) ($(plaintext2)+ (1.4,2.2)$) ($(plaintext2)+ (1.4,-2.2)$)};
+       \foreach \y in {-4,...,4}
+                 \draw ($(plaintext2)+(-1.2,0.5*\y)$)--($(plaintext2)+(1.2,0.5*\y)$);
+      %\node [label=right:$\S$] (label) at (sep) {};
+      % \node [label=right:$\PPT$] (label) at (ppt) {};
+      %\node [label=right:$\rho_{AB}$] (label) at (rho) {};
+      %\node [label=right:$\mathcal{D}$] (label) at (dens) {};
+      \end{tikzpicture}
+    \end{figure}
+    \end{block}
     \end{column}
     \begin{column}{.48\linewidth}
+      \begin{block}{\large A battle between Cryptographers and Cryptoanalysts}
+        An encrypted message remains only secret if the there is no way to break the restore the the 
+      \end{block}
     \end{column}
     \end{columns}
     \vfill
@@ -55,6 +85,7 @@
       \begin{figure}
       \centering
       \begin{tikzpicture}
+
       \end{tikzpicture}
       \end{figure}
     \end{block}
