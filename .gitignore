@@ -1,1 +1,11 @@
 /beamerposter-example/*
+*.swp
+/rwthaachenuniversity*
+tango*
+beamerthemeDreuw.sty
+*.aux
+*.log
+*.out
+*.snm
+*.toc
+*.nav

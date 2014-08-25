@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="600"
+   height="600"
+   id="svg4774"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="logo_qci_1.svg">
+  <defs
+     id="defs4776" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="599.57906"
+     inkscape:cy="419.40849"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1440"
+     inkscape:window-height="876"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     width="600px" />
+  <metadata
+     id="metadata4779">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-452.36218)">
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#030000;stroke-width:40;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path4782"
+       sodipodi:cx="208.57143"
+       sodipodi:cy="316.95163"
+       sodipodi:rx="91.428574"
+       sodipodi:ry="144.28572"
+       d="m 300,316.95163 a 91.428574,144.28572 0 1 1 -182.85715,0 91.428574,144.28572 0 1 1 182.85715,0 z"
+       transform="translate(164,392.2677)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:40;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 356.56242,851.06745 177.73231,72.01802"
+       id="path5292"
+       inkscape:connector-curvature="0" />
+    <g
+       transform="matrix(2.4519995,0,0,2.4519995,-1552.6825,36.278632)"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       id="text5294" />
+    <g
+       style="font-size:40px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#d24700;fill-opacity:1;stroke:none;font-family:TeX Gyre Heros;-inkscape-font-specification:TeX Gyre Heros Italic"
+       id="text5310"
+       transform="translate(-151.42857,22.571429)">
+      <path
+         d="m 389.81026,765.93359 -12.96,-21.744 c 7.056,-7.34399 12.67201,-17.56801 14.4,-26.352 l -11.376,0 c -1.72799,7.056 -4.032,11.80801 -8.64,17.136 l -14.112,-23.472 c 17.85599,-8.06399 26.064,-17.56801 26.064,-30.096 0,-10.79999 -7.48801,-17.568 -19.152,-17.568 -15.69598,0 -29.952,12.81602 -29.952,26.784 0,3.312 0.72001,6.62401 2.016,9.792 l 2.592,6.048 c 0.288,0.576 0.72,1.72801 1.296,3.312 -20.01598,11.37599 -29.52,21.16802 -29.52,37.728 0,13.39199 9.36002,21.744 24.48,21.744 11.51999,0 19.87202,-3.74401 32.976,-14.544 l 6.624,11.232 m -3.312,-82.656 c 0,7.92 -5.18401,13.53601 -18.432,20.16 -5.90399,-8.35199 -6.768,-10.224 -6.768,-14.256 0,-8.49599 6.76801,-15.264 15.264,-15.264 6.192,0 9.936,3.60001 9.936,9.36 m -8.208,62.928 c -10.51199,8.78399 -17.136,11.952 -24.192,11.952 -9.64799,0 -15.696,-5.76001 -15.696,-15.12 0,-9.35999 6.62402,-16.848 22.752,-25.488 l 17.136,28.656"
+         style="font-size:144px;fill:#d24700;fill-opacity:1;stroke:none;-inkscape-font-specification:TeX Gyre Heros Italic"
+         id="path5315"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccccssscccssccccssccsscc" />
+    </g>
+    <path
+       transform="translate(-50.28571,393.69627)"
+       d="m 248.19986,446.97967 a 91.428574,144.28572 0 1 1 3.40415,-257.33276"
+       sodipodi:ry="144.28572"
+       sodipodi:rx="91.428574"
+       sodipodi:cy="316.95163"
+       sodipodi:cx="208.57143"
+       id="path5317"
+       style="fill:none;stroke:#030000;stroke-width:40;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sodipodi:type="arc"
+       sodipodi:start="1.1224943"
+       sodipodi:end="5.2024377"
+       sodipodi:open="true" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:40;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 537.42857,565.6479 0,288.21429"
+       id="path5321"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:TeX Gyre Heros;-inkscape-font-specification:TeX Gyre Heros"
+       x="108.57141"
+       y="929.21936"
+       id="text5375"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="108.57141"
+         y="929.21936"
+         id="tspan5379">Cryptography &amp;</tspan><tspan
+         sodipodi:role="line"
+         x="108.57141"
+         y="979.21936"
+         id="tspan5381">Quantum Information</tspan></text>
+  </g>
+</svg>
