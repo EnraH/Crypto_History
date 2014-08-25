@@ -49,22 +49,27 @@
     \begin{block}{\large The Scheme of Cryptography}
     \begin{figure}
       \begin{tikzpicture}[scale=0.9]
-      \coordinate (plaintext1) at (0.,-1);
-      \coordinate (plaintext2) at (10.,-1);
+      \coordinate (plaintext1) at (-10.,-3);
+      \coordinate (plaintext2) at (10.,-3);
       \coordinate (key1) at (0.,1);
       \coordinate (key2) at (10,1);
-      \coordinate (cipher_algorithm) at (2,0);
-      \coordinate (decipher_algorithm) at (8,0);
-      \coordinate (ciphertext) at (5,0);
-      \filldraw[very thick,color=blue!70!black!90, fill=blue!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{(3.6,-2.2) (3.6,2.2) (6.4,2.2) (6.4,-2.2)};
+      \coordinate (cipher_algorithm) at (-5,0);
+      \coordinate (decipher_algorithm) at (5,0);
+      \coordinate (ciphertext) at (0,0);
+      % drawing the text sheets
+      \filldraw[very thick,color=blue!70!black!90, fill=blue!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(ciphertext)+ (-1.4,-2.2)$) ($(ciphertext)+ (-1.4,2.2)$) ($(ciphertext)+ (1.4,2.2)$) ($(ciphertext)+ (1.4,-2.2)$)};
        \foreach \y in {-4,...,4}
-                 \draw (3.8,0.5*\y)--(6.2,0.5*\y);
+                 \draw[dashed] ($(ciphertext)+(-1.2,0.5*\y)$)--($(ciphertext)+(1.2,0.5*\y)$);
       \filldraw[very thick,color=red!70!black!90, fill=red!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(plaintext1)+ (-1.4,-2.2)$) ($(plaintext1)+ (-1.4,2.2)$) ($(plaintext1)+ (1.4,2.2)$) ($(plaintext1)+ (1.4,-2.2)$)};
        \foreach \y in {-4,...,4}
                  \draw ($(plaintext1)+(-1.2,0.5*\y)$)--($(plaintext1)+(1.2,0.5*\y)$);
       \filldraw[very thick,color=red!70!black!90, fill=red!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(plaintext2)+ (-1.4,-2.2)$) ($(plaintext2)+ (-1.4,2.2)$) ($(plaintext2)+ (1.4,2.2)$) ($(plaintext2)+ (1.4,-2.2)$)};
        \foreach \y in {-4,...,4}
                  \draw ($(plaintext2)+(-1.2,0.5*\y)$)--($(plaintext2)+(1.2,0.5*\y)$);
+      % drawing the key
+      \draw[line width=2pt] (key1) circle (0.5);
+      \draw[line width=2pt] ($(key1) + (0.5,0)$) -- ($(key1) + (2,0)$);
+      \filldraw plot coordinates{($(key1) + (1.6,0)$) ($(key1) + (2,0)$) ($(key1) + (2,-0.5)$) ($(key1) + (1.6,-0.5)$) };
       %\node [label=right:$\S$] (label) at (sep) {};
       % \node [label=right:$\PPT$] (label) at (ppt) {};
       %\node [label=right:$\rho_{AB}$] (label) at (rho) {};
