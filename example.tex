@@ -14,6 +14,12 @@
   \usetikzlibrary{calc}
   \usefonttheme{professionalfonts}
 
+  \newcommand{\gearmacro}[5]{%  
+    \foreach \i in {1,...,#1} {%
+      [rotate=(\i-1)*360/#1]  (0:#2)  arc (0:#4:#2) {[rounded corners=1.5pt]
+        -- (#4+#5:#3)  arc (#4+#5:360/#1-#5:#3)} --  (360/#1:#2)
+    }}  
+
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
   \graphicspath{{figures/}}
   \title[Crypto History]{The History of Cryptography}
@@ -48,13 +54,13 @@
     \end{block}
     \begin{block}{\large The Scheme of Cryptography}
     \begin{figure}
-      \begin{tikzpicture}[scale=0.9]
-      \coordinate (plaintext1) at (-10.,-3);
-      \coordinate (plaintext2) at (10.,-3);
-      \coordinate (key1) at (0.,1);
-      \coordinate (key2) at (10,1);
-      \coordinate (cipher_algorithm) at (-5,0);
-      \coordinate (decipher_algorithm) at (5,0);
+      \begin{tikzpicture}[scale=0.8]
+      \coordinate (plaintext1) at (-20.,0);
+      \coordinate (plaintext2) at (20.,0);
+      \coordinate (key1) at (-11.,8);
+      \coordinate (key2) at (9,8);
+      \coordinate (cipher_algorithm) at (-10,0);
+      \coordinate (decipher_algorithm) at (10,0);
       \coordinate (ciphertext) at (0,0);
       % drawing the text sheets
       \filldraw[very thick,color=blue!70!black!90, fill=blue!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(ciphertext)+ (-1.4,-2.2)$) ($(ciphertext)+ (-1.4,2.2)$) ($(ciphertext)+ (1.4,2.2)$) ($(ciphertext)+ (1.4,-2.2)$)};
@@ -66,10 +72,28 @@
       \filldraw[very thick,color=red!70!black!90, fill=red!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(plaintext2)+ (-1.4,-2.2)$) ($(plaintext2)+ (-1.4,2.2)$) ($(plaintext2)+ (1.4,2.2)$) ($(plaintext2)+ (1.4,-2.2)$)};
        \foreach \y in {-4,...,4}
                  \draw ($(plaintext2)+(-1.2,0.5*\y)$)--($(plaintext2)+(1.2,0.5*\y)$);
-      % drawing the key
+      % drawing the keys
       \draw[line width=2pt] (key1) circle (0.5);
       \draw[line width=2pt] ($(key1) + (0.5,0)$) -- ($(key1) + (2,0)$);
       \filldraw plot coordinates{($(key1) + (1.6,0)$) ($(key1) + (2,0)$) ($(key1) + (2,-0.5)$) ($(key1) + (1.6,-0.5)$) };
+      \draw[line width=2pt] (key2) circle (0.5);
+      \draw[line width=2pt] ($(key2) + (0.5,0)$) -- ($(key2) + (2,0)$);
+      \filldraw plot coordinates{($(key2) + (1.6,0)$) ($(key2) + (2,0)$) ($(key2) + (2,-0.5)$) ($(key2) + (1.6,-0.5)$) };
+      % drawing the cipher algorithms
+      \filldraw[very thick,color=black!70!black!90, fill=black!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(cipher_algorithm)+ (-1.4,-1.4)$) ($(cipher_algorithm)+ (-1.4,1.4)$) ($(cipher_algorithm)+ (1.4,1.4)$) ($(cipher_algorithm)+ (1.4,-1.4)$)};
+      \node [label={[white] above:\tiny $>>>>$}] (label) at (cipher_algorithm) {};
+      \node [label={[white] below:\tiny $<<<<$}] (label) at (cipher_algorithm) {};
+      \filldraw[very thick,color=black!70!black!90, fill=black!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(decipher_algorithm)+ (-1.4,-1.4)$) ($(decipher_algorithm)+ (-1.4,1.4)$) ($(decipher_algorithm)+ (1.4,1.4)$) ($(decipher_algorithm)+ (1.4,-1.4)$)};
+      \node [label={[white] above:\tiny $>>>>$}] (label) at (decipher_algorithm) {};
+      \node [label={[white] below:\tiny $<<<<$}] (label) at (decipher_algorithm) {};
+      %\draw[fill=white] \gearmacro{8}{2}{2.4}{20}{2};
+      % drawing the arrows
+      \draw[line width=2pt, ->] ($(key1) + (+1,-1.5)$) -- ($(cipher_algorithm) + (0,3)$);
+      \draw[line width=2pt, ->] ($(plaintext1) + (3.,0)$) -- ($(cipher_algorithm) + (-3,0)$);
+      \draw[line width=2pt, ->] ($(cipher_algorithm) + (3,0.)$) -- ($(ciphertext) + (-3.,0.)$);
+      \draw[line width=2pt, ->] ($(ciphertext) + (3.,0.)$) -- ($(decipher_algorithm) + (-3,0.)$);
+      \draw[line width=2pt, <-] ($(decipher_algorithm) + (0,3)$) -- ($(key2) + (+1,-1.5)$);
+      \draw[line width=2pt, ->] ($(decipher_algorithm) + (3,0)$) -- ($(plaintext2) + (-3.,0)$);
       %\node [label=right:$\S$] (label) at (sep) {};
       % \node [label=right:$\PPT$] (label) at (ppt) {};
       %\node [label=right:$\rho_{AB}$] (label) at (rho) {};
