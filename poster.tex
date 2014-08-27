@@ -145,18 +145,20 @@
       \begin{column}{.48\linewidth}
         \begin{block}{Scytale: a transposition cipher}
         The message ``Help me, I am under attack'' is written on the scytale in rows
-\begin{IEEEeqnarray}{CCCCC}
-  \vert &   \vert &   \vert &   \vert &   \vert &   \vert &  \vert & \\
-  \vert & H \vert & E \vert & L \vert & P \vert & M \vert &  \vert & \\
-__\vert & E \vert & I \vert & A \vert & M \vert & U \vert &__\vert & \\
-\vert &  \vert & N \vert & D \vert & E \vert & R \vert & A \vert & \\
-\vert &  \vert & T \vert & T \vert & A \vert & C \vert & K \vert & \\
-\vert &  \vert &   \vert &   \vert &   \vert &   \vert &   \vert &
-\end{IEEEeqnarray}
+        \begin{equation*}
+        \begin{array}{|c|c|c|c|c|}
+              &    &    &    &   \\
+           H  & E  & L  & P  & M \\
+           E  & I  & A  & M  & U \\
+           N  & D  & E  & R  & A \\
+           T  & T  & A  & C  & K \\   
+              &    &    &    &   
+        \end{array}
+        \end{equation*}
         After unwinding the band it becomes scrambled to
-%        \begin{verbatim}
-%          HENTEIDTLAEAPMRCMUAK
-%        \end{verbatim}
+        \begin{equation*}
+          HENTEIDTLAEAPMRCMUAK
+        \end{equation*}
         \end{block}
       \end{column}
       \begin{column}{.48\linewidth}
