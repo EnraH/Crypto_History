@@ -9,3 +9,12 @@ Poster about the history of cryptography for the 10th anniversary of the Informa
 - timeline with biggest achievements of cryptography and cryptanalysis
 - description of particular ciphers
 - political and historical stories related to cryptography (?)
+
+## List of outstanding persons
+
+- Babbage
+- Rejewski
+- Alan Turing
+- Feistel
+- Whitman Diffie
+
