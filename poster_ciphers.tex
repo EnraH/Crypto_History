@@ -1,0 +1,189 @@
+\documentclass[final,hyperref={pdfpagelabels=false}]{beamer}
+\mode<presentation>
+  {
+  %  \usetheme{Berlin}
+  \usetheme{USI}
+  }
+  %\usepackage{times}
+  \usepackage{amsmath,amsthm, amssymb, amsfonts, latexsym}
+  \usepackage[english]{babel}
+  \usepackage[latin1]{inputenc}
+  \usepackage[orientation=portrait,size=a0,scale=1.4,debug]{beamerposter}
+  \usepackage{verbatim}
+  \usepackage{IEEEtrantools}
+  \usepackage{tikz}
+  \usetikzlibrary{calc}
+
+  \newcommand{\gearmacro}[5]{%  
+    \foreach \i in {1,...,#1} {%
+      [rotate=(\i-1)*360/#1]  (0:#2)  arc (0:#4:#2) {[rounded corners=1.5pt]
+        -- (#4+#5:#3)  arc (#4+#5:360/#1-#5:#3)} --  (360/#1:#2)
+    }}  
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+  \graphicspath{{figures/}}
+  \title[Crypto]{Ciphers and Attacks}
+  \author[Hansen and Wolf]{Arne Hansen and Prof Stefan Wolf}
+  \institute[USI]{Cryptography and Quantum Information, USI Lugano}
+  \date{Jul. 31th, 2007}
+
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+  \begin{document}
+  \tikzset{
+    TLstegan/.style = {fill = gray!20!white,
+                      draw=AHdarkblue,align= left,text width=6cm,font=\tiny,line width=2pt},
+    TLcrypto/.style = {fill = gray!20!white,
+                      draw=AHdarkorange,align= left,text width=6cm,font=\tiny,line width=2pt},
+    TLphases/.style = {color=black,left,text width=10cm,font=\tiny,line width=0pt}
+  }
+  \begin{frame}{} 
+    \vfill
+    \begin{columns}[t]
+    \begin{column}{.48\linewidth}
+    \begin{block}{\large Ways of Hiding Information}
+      \begin{figure}
+      \centering
+      \begin{tikzpicture}[font=\footnotesize,
+          grow=right, level 1/.style={sibling distance=6em},
+          level 2/.style={sibling distance=6em}, level distance=10cm]
+          \node {Hidding Information} % root
+            child { node {Steganography: writing physically hidden}
+            }
+            child { node {\textbf{Cryptography} information hidden}
+              child { node {Substitution} }
+              child { node {Permutation} }
+            };
+      \end{tikzpicture}
+      \caption{Categories of Secrecy}
+      \end{figure}
+      \alert{Cryptography} hiding content of a message without hiding the writing itself. \\
+      \alert{Steganography} physically hiding the message (invisible ink, \ldots)
+    \end{block}
+    \begin{block}{\large The Scheme of Cryptography}
+    \begin{figure}
+      \begin{tikzpicture}[scale=0.8]
+      \coordinate (plaintext1) at (-20.,0);
+      \coordinate (plaintext2) at (20.,0);
+      \coordinate (key1) at (-11.,8);
+      \coordinate (key2) at (9,8);
+      \coordinate (cipher_algorithm) at (-10,0);
+      \coordinate (decipher_algorithm) at (10,0);
+      \coordinate (ciphertext) at (0,0);
+      % drawing the text sheets
+      \filldraw[very thick,color=blue!70!black!90, fill=blue!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(ciphertext)+ (-1.4,-2.2)$) ($(ciphertext)+ (-1.4,2.2)$) ($(ciphertext)+ (1.4,2.2)$) ($(ciphertext)+ (1.4,-2.2)$)};
+       \foreach \y in {-4,...,4}
+                 \draw[dashed] ($(ciphertext)+(-1.2,0.5*\y)$)--($(ciphertext)+(1.2,0.5*\y)$);
+      \filldraw[very thick,color=red!70!black!90, fill=red!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(plaintext1)+ (-1.4,-2.2)$) ($(plaintext1)+ (-1.4,2.2)$) ($(plaintext1)+ (1.4,2.2)$) ($(plaintext1)+ (1.4,-2.2)$)};
+       \foreach \y in {-4,...,4}
+                 \draw ($(plaintext1)+(-1.2,0.5*\y)$)--($(plaintext1)+(1.2,0.5*\y)$);
+      \filldraw[very thick,color=red!70!black!90, fill=red!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(plaintext2)+ (-1.4,-2.2)$) ($(plaintext2)+ (-1.4,2.2)$) ($(plaintext2)+ (1.4,2.2)$) ($(plaintext2)+ (1.4,-2.2)$)};
+       \foreach \y in {-4,...,4}
+                 \draw ($(plaintext2)+(-1.2,0.5*\y)$)--($(plaintext2)+(1.2,0.5*\y)$);
+      % drawing the keys
+      \draw[line width=2pt] (key1) circle (0.5);
+      \draw[line width=2pt] ($(key1) + (0.5,0)$) -- ($(key1) + (2,0)$);
+      \filldraw plot coordinates{($(key1) + (1.6,0)$) ($(key1) + (2,0)$) ($(key1) + (2,-0.5)$) ($(key1) + (1.6,-0.5)$) };
+      \draw[line width=2pt] (key2) circle (0.5);
+      \draw[line width=2pt] ($(key2) + (0.5,0)$) -- ($(key2) + (2,0)$);
+      \filldraw plot coordinates{($(key2) + (1.6,0)$) ($(key2) + (2,0)$) ($(key2) + (2,-0.5)$) ($(key2) + (1.6,-0.5)$) };
+      % drawing the cipher algorithms
+      \filldraw[very thick,color=black!70!black!90, fill=black!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(cipher_algorithm)+ (-1.4,-1.4)$) ($(cipher_algorithm)+ (-1.4,1.4)$) ($(cipher_algorithm)+ (1.4,1.4)$) ($(cipher_algorithm)+ (1.4,-1.4)$)};
+      \node [label={[white] above:\tiny $>>>>$}] (label) at (cipher_algorithm) {};
+      \node [label={[white] below:\tiny $<<<<$}] (label) at (cipher_algorithm) {};
+      \filldraw[very thick,color=black!70!black!90, fill=black!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(decipher_algorithm)+ (-1.4,-1.4)$) ($(decipher_algorithm)+ (-1.4,1.4)$) ($(decipher_algorithm)+ (1.4,1.4)$) ($(decipher_algorithm)+ (1.4,-1.4)$)};
+      \node [label={[white] above:\tiny $>>>>$}] (label) at (decipher_algorithm) {};
+      \node [label={[white] below:\tiny $<<<<$}] (label) at (decipher_algorithm) {};
+      %\draw[fill=white] \gearmacro{8}{2}{2.4}{20}{2};
+      % drawing the arrows
+      \draw[line width=2pt, ->] ($(key1) + (+1,-1.5)$) -- ($(cipher_algorithm) + (0,3)$);
+      \draw[line width=2pt, ->] ($(plaintext1) + (3.,0)$) -- ($(cipher_algorithm) + (-3,0)$);
+      \draw[line width=2pt, ->] ($(cipher_algorithm) + (3,0.)$) -- ($(ciphertext) + (-3.,0.)$);
+      \draw[line width=2pt, ->] ($(ciphertext) + (3.,0.)$) -- ($(decipher_algorithm) + (-3,0.)$);
+      \draw[line width=2pt, <-] ($(decipher_algorithm) + (0,3)$) -- ($(key2) + (+1,-1.5)$);
+      \draw[line width=2pt, ->] ($(decipher_algorithm) + (3,0)$) -- ($(plaintext2) + (-3.,0)$);
+      %\node [label=right:$\S$] (label) at (sep) {};
+      % \node [label=right:$\PPT$] (label) at (ppt) {};
+      %\node [label=right:$\rho_{AB}$] (label) at (rho) {};
+      %\node [label=right:$\mathcal{D}$] (label) at (dens) {};
+      \end{tikzpicture}
+    \end{figure}
+    The plaintext is together with a key are given to an encryption algorithm generating the ciphertext. The ciphertext is then sent to another party. With the right key the  message can be deciphered again.
+    \end{block}
+    \end{column}
+    \begin{column}{.48\linewidth}
+      \begin{block}{\large }
+      \end{block}
+    \end{column}
+    \end{columns}
+    \vfill
+    \vfill
+    \begin{block}{\large }
+    \end{block}
+    \vfill
+    \begin{columns}[t]
+      \begin{column}{.48\linewidth}
+        \begin{block}{Scytale: a transposition cipher}
+        The message ``Help me, I am under attack'' is written on the scytale in rows
+        \begin{equation*}
+        \begin{array}{|c|c|c|c|c|}
+              &    &    &    &   \\
+           \text{\tt H }  & \text{\tt E }  & \text{\tt L }  & \text{\tt P }  & \text{\tt M } \\
+           \text{\tt E }  & \text{\tt I }  & \text{\tt A }  & \text{\tt M }  & \text{\tt U } \\
+           \text{\tt N }  & \text{\tt D }  & \text{\tt E }  & \text{\tt R }  & \text{\tt A } \\
+           \text{\tt T }  & \text{\tt T }  & \text{\tt A }  & \text{\tt C }  & \text{\tt K } \\   
+              &    &    &    &   
+        \end{array}
+        \end{equation*}
+        After unwinding the band it becomes scrambled to
+        \begin{equation*}
+          \text{\tt HENTEIDTLAEAPMRCMUAK}
+        \end{equation*}
+        \end{block}
+
+        \begin{block}{Navajo Code: an unbroken `linguistic' code}
+          During WWII machine ciphers have been common among all parties. A major drawback was the time effort to encode and decode. In critical situations that required fast communication encryption was thus dropped revealing the content directly to the enemy. Therefore in 1942 Philip Johnston, a US American engineer, suggested to translate message to the tribal language of the Navajo before transmission. As its grammar and vocabulary was not related to neither European nor Asiatic languages it served as a very secure cipher. Therefore Navajos were recruited as translators and cryptographers. While machine ciphers were frequently broken, the Navajo language was never.
+        \end{block}
+      \end{column}
+      \begin{column}{.48\linewidth}
+        \begin{block}{The Caesar Shift Cipher}
+          The simplest substitution cipher is the Caesar Cipher. Caesar shifted all the letters down the alphabet by a fixed step, say for instance 3 letters. The plaintext and ciphertext alphabet are associated as follows
+          \begin{IEEEeqnarray*}{RL}
+            \text{Plaintext:}\quad &\text{\tt ABCDEFGHIJKLMNOPQRSTUVWXYZ} \\
+            \text{Cipher:}  \quad &\text{\tt XYZABCDEFGHIJKLMNOPQRSTUVW}
+          \end{IEEEeqnarray*}
+          An example encryption would be
+          \begin{IEEEeqnarray*}{L}
+            \text{\tt Some important message.}\\
+            \text{\tt PLJB FJMLOQXKQ JBPPXDB.}
+          \end{IEEEeqnarray*}
+        \end{block}
+
+        \begin{block}{Frequency Analysis}
+        \end{block}
+
+        \begin{block}{The One-Time Pad}
+        \end{block}
+        \begin{block}{Enigma: a first machine cipher}
+        \end{block}
+ 
+        \begin{block}{Recommended Encryption Tools}
+          \begin{figure}[h]
+          \begin{tikzpicture}[scale=1]
+          \node (gnupg) at (0,0) {GNU Privacy Guard (GnPG): implementation of OpenPGP};
+          \node[inner sep=0pt] (qr1) at (-6,-3) {\includegraphics[width=.15\textwidth]{qr_gnupg}};
+          \node[inner sep=0pt] (qr1) at (0,-3) {\includegraphics[width=.15\textwidth]{qr_gnupg_swlist}};
+          \end{tikzpicture}
+          \end{figure}
+        \end{block}
+      \end{column}
+    \end{columns}
+  \end{frame}
+\end{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-PDF-mode: t
+%%% End:
