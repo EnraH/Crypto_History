@@ -60,13 +60,15 @@
       \alert{Cryptography} hiding content of a message without hiding the writing itself. \\
       \alert{Steganography} physically hiding the message (invisible ink, \ldots)
     \end{block}
+    \end{column}
+    \begin{column}{.48\linewidth}
     \begin{block}{\large The Scheme of Cryptography}
     \begin{figure}
       \begin{tikzpicture}[scale=0.8]
       \coordinate (plaintext1) at (-20.,0);
       \coordinate (plaintext2) at (20.,0);
-      \coordinate (key1) at (-11.,8);
-      \coordinate (key2) at (9,8);
+      \coordinate (key1) at (-21.,8);
+      \coordinate (key2) at (19,8);
       \coordinate (cipher_algorithm) at (-10,0);
       \coordinate (decipher_algorithm) at (10,0);
       \coordinate (ciphertext) at (0,0);
@@ -89,18 +91,16 @@
       \filldraw plot coordinates{($(key2) + (1.6,0)$) ($(key2) + (2,0)$) ($(key2) + (2,-0.5)$) ($(key2) + (1.6,-0.5)$) };
       % drawing the cipher algorithms
       \filldraw[very thick,color=black!70!black!90, fill=black!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(cipher_algorithm)+ (-1.4,-1.4)$) ($(cipher_algorithm)+ (-1.4,1.4)$) ($(cipher_algorithm)+ (1.4,1.4)$) ($(cipher_algorithm)+ (1.4,-1.4)$)};
-      \node [label={[white] above:\tiny $>>>>$}] (label) at (cipher_algorithm) {};
-      \node [label={[white] below:\tiny $<<<<$}] (label) at (cipher_algorithm) {};
+      \node [color=white] (label) at (cipher_algorithm) {\large$\mathbf{\oplus}$};
       \filldraw[very thick,color=black!70!black!90, fill=black!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(decipher_algorithm)+ (-1.4,-1.4)$) ($(decipher_algorithm)+ (-1.4,1.4)$) ($(decipher_algorithm)+ (1.4,1.4)$) ($(decipher_algorithm)+ (1.4,-1.4)$)};
-      \node [label={[white] above:\tiny $>>>>$}] (label) at (decipher_algorithm) {};
-      \node [label={[white] below:\tiny $<<<<$}] (label) at (decipher_algorithm) {};
+      \node [color=white] (label) at (decipher_algorithm) {\large$\mathbf{\oplus}$};
       %\draw[fill=white] \gearmacro{8}{2}{2.4}{20}{2};
       % drawing the arrows
-      \draw[line width=2pt, ->] ($(key1) + (+1,-1.5)$) -- ($(cipher_algorithm) + (0,3)$);
+      \draw[line width=2pt, ->] ($(key1) + (1.7,-1.5)$) -- ($(cipher_algorithm) + (-3,2)$);
       \draw[line width=2pt, ->] ($(plaintext1) + (3.,0)$) -- ($(cipher_algorithm) + (-3,0)$);
       \draw[line width=2pt, ->] ($(cipher_algorithm) + (3,0.)$) -- ($(ciphertext) + (-3.,0.)$);
       \draw[line width=2pt, ->] ($(ciphertext) + (3.,0.)$) -- ($(decipher_algorithm) + (-3,0.)$);
-      \draw[line width=2pt, <-] ($(decipher_algorithm) + (0,3)$) -- ($(key2) + (+1,-1.5)$);
+      \draw[line width=2pt, <-] ($(decipher_algorithm) + (3,2)$) -- ($(key2) + (-.5,-1.5)$);
       \draw[line width=2pt, ->] ($(decipher_algorithm) + (3,0)$) -- ($(plaintext2) + (-3.,0)$);
       %\node [label=right:$\S$] (label) at (sep) {};
       % \node [label=right:$\PPT$] (label) at (ppt) {};
@@ -108,10 +108,12 @@
       %\node [label=right:$\mathcal{D}$] (label) at (dens) {};
       \end{tikzpicture}
     \end{figure}
-    The plaintext is together with a key are given to an encryption algorithm generating the ciphertext. The ciphertext is then sent to another party. With the right key the  message can be deciphered again.
+    A first player, usually called Alice, encrypts the plaintext according to the encryption algorithm using her key. The ciphertext Alice generated is then sent to another party, often called Bob. With his key he can execute the decryption algorithm in order to obtain the plaintext again. \\
+    \alert{Security} 
+      What does it mean for a cipher to be secure? The notion of security depends on the abalities we imagine an adversary has to attack the cipher. The adversary, often referred to as Eve, can at least read the ciphertext, i.e. tap the wire between Alice and Bob. Usually Eve also knows the encryption and decryption algorithms. Obviously Alice and Bob have to keep their key secret. If Eve's knowledge of the algorithms and the ciphertext suffices to retrieve the plaintext, the cipher is insecure. Otherwise Alice and Bob can communicate secretely. \\
+    \alert{Authenticity} 
+      What if Eve doesn't merely read the ciphertext but also changes it? Or sends something to Bob, claiming to be Alice? This would be a scenario with a stronger adversary. These considerations lead for instance to {\em digital signatures}.
     \end{block}
-    \end{column}
-    \begin{column}{.48\linewidth}
       \begin{block}{\large }
       \end{block}
     \end{column}
@@ -139,13 +141,8 @@
         \begin{equation*}
           \text{\tt HENTEIDTLAEAPMRCMUAK}
         \end{equation*}
+        The scytale is thus a permutation cipher.
         \end{block}
-
-        \begin{block}{Navajo Code: an unbroken `linguistic' code}
-          During WWII machine ciphers have been common among all parties. A major drawback was the time effort to encode and decode. In critical situations that required fast communication encryption was thus dropped revealing the content directly to the enemy. Therefore in 1942 Philip Johnston, a US American engineer, suggested to translate message to the tribal language of the Navajo before transmission. As its grammar and vocabulary was not related to neither European nor Asiatic languages it served as a very secure cipher. Therefore Navajos were recruited as translators and cryptographers. While machine ciphers were frequently broken, the Navajo language was never.
-        \end{block}
-      \end{column}
-      \begin{column}{.48\linewidth}
         \begin{block}{The Caesar Shift Cipher}
           The simplest substitution cipher is the Caesar Cipher. Caesar shifted all the letters down the alphabet by a fixed step, say for instance 3 letters. The plaintext and ciphertext alphabet are associated as follows
           \begin{IEEEeqnarray*}{RL}
@@ -159,10 +156,28 @@
           \end{IEEEeqnarray*}
         \end{block}
 
+%        \begin{block}{Navajo Code: an unbroken `linguistic' code}
+%          During WWII machine ciphers have been common among all parties. A major drawback was the time effort to encode and decode. In critical situations that required fast communication encryption was thus dropped revealing the content directly to the enemy. Therefore in 1942 Philip Johnston, a US American engineer, suggested to translate message to the tribal language of the Navajo before transmission. As its grammar and vocabulary was not related to neither European nor Asiatic languages it served as a very secure cipher. Therefore Navajos were recruited as translators and cryptographers. While machine ciphers were frequently broken, the Navajo language was never.
+%        \end{block}
+      \end{column}
+      \begin{column}{.48\linewidth}
+
         \begin{block}{Frequency Analysis}
+          The letters of the alphabet do not occur with the same frequency. In English the letter "e" is the most common and occurs a lot more often than for instance "z". So if one knows in what language a plaintext was written, one can decrypt the ciphertext from a monoalphabetic substitution cipher without knowing the substitution scheme. One merely has to count the number of occurences of any letter of the alphabet, compare this with the frequencies of letters of the given language and match corresponding letters. This works better the longer the cipher text is. (Actually if the ciphertext is very short, the cipher might become a one-time pad which is really secure).
         \end{block}
 
         \begin{block}{The One-Time Pad}
+          How could we get a substitution cipher with proper security? The issue of most substitution ciphers is their redundancy. For example the letter "e" might always be substituted by "m". This clearly allows frequency attacks as the number of occurences of "e" is just shifted to "m". In order to get rid of any redundancy or other structures that might be helpful to break the cipher the one-time pad uses an entirely random key that is just as long as the message itself. A binary example as it occurs in any computer is then
+        \begin{IEEEeqnarray*}{RC}
+          \text{Text}\quad & {\tt Ciao} \\
+          \text{Plaintext}\quad & {\tt 01000011\ 01101001\ 01100001\ 01101111} \\
+          & \oplus \\
+          \text{Key}      \quad & {\tt 10011011\ 11110011\ 10011100\ 11011011} \\
+          & \text{gives} \\
+          \text{Ciphertext}\quad & {\tt 11011000\ 10011010\ 11111101\ 10110100}
+        \end{IEEEeqnarray*}
+        So adding the key (i.e. applying the XOR (either \ldots or \ldots) operation) makes the ciphertext to look completely random too. In other words: (something completely random) $\oplus$ (something with structure) $=$ (something completely random). As the ciphertext looks random to Eve she has no means to decipher it. Thus the one-time pad is properly secure. As the name already suggest: never ever use it even twice. This would introduce structure and therefore turn the cipher insecure. \\
+        Why isn't the OTP used all over the place if it is completely secure? Well, you need to distribute a lot of keys secretely. This is very inconvenient. Current ciphers provide a very good level of security as the resources needed to break them exceed the computational power of recent computer by far. 
         \end{block}
         \begin{block}{Enigma: a first machine cipher}
         \end{block}
