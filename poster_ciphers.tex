@@ -8,7 +8,7 @@
   \usepackage{amsmath,amsthm, amssymb, amsfonts, latexsym}
   \usepackage[english]{babel}
   \usepackage[latin1]{inputenc}
-  \usepackage[orientation=portrait,size=a0,scale=1.4,debug]{beamerposter}
+  \usepackage[orientation=portrait,size=a0,scale=1.2,debug]{beamerposter}
   \usepackage{verbatim}
   \usepackage{IEEEtrantools}
   \usepackage{tikz}
@@ -40,13 +40,13 @@
   \begin{frame}{} 
     \vfill
     \begin{columns}[t]
-    \begin{column}{.48\linewidth}
-    \begin{block}{\large Ways of Hiding Information}
+    \begin{column}{.3\linewidth}
+    \begin{block}{Categories of Secrecy}
       \begin{figure}
       \centering
       \begin{tikzpicture}[font=\footnotesize,
-          grow=right, level 1/.style={sibling distance=6em},
-          level 2/.style={sibling distance=6em}, level distance=10cm]
+          grow=right, level 1/.style={sibling distance=4em},
+          level 2/.style={sibling distance=4em}, level distance=6cm]
           \node {Hidding Information} % root
             child { node {Steganography: writing physically hidden}
             }
@@ -55,16 +55,19 @@
               child { node {Permutation} }
             };
       \end{tikzpicture}
-      \caption{Categories of Secrecy}
+%      \caption{Categories of Secrecy}
       \end{figure}
       \alert{Cryptography} hiding content of a message without hiding the writing itself. \\
       \alert{Steganography} physically hiding the message (invisible ink, \ldots)
     \end{block}
     \end{column}
-    \begin{column}{.48\linewidth}
-    \begin{block}{\large The Scheme of Cryptography}
+    \begin{column}{.63\linewidth}
+    \begin{block}{The Scheme of Cryptography}
     \begin{figure}
-      \begin{tikzpicture}[scale=0.8]
+      \begin{tikzpicture}[scale=0.6]
+      \coordinate (alice) at (-20,-5);
+      \coordinate (bob) at (20,-5);
+      \coordinate (eve) at(0,-5);
       \coordinate (plaintext1) at (-20.,0);
       \coordinate (plaintext2) at (20.,0);
       \coordinate (key1) at (-21.,8);
@@ -73,6 +76,12 @@
       \coordinate (decipher_algorithm) at (10,0);
       \coordinate (ciphertext) at (0,0);
       % drawing the text sheets
+      \draw[draw=AHdarkblue,fill=AHdarkblue!60!white!30] ($(alice)+ (-4,-1)$) rectangle ($(alice)+ (4,15)$);
+      \node[color=black] at (alice) {Alice};
+      \draw[draw=AHdarkblue,fill=AHdarkblue!60!white!30] ($(bob)+ (-4,-1)$) rectangle ($(bob)+ (4,15)$);
+      \node[color=black] at (bob) {Bob};
+      \draw[draw=AHdarkblue,dashed,fill=AHdarkblue!60!white!30] ($(eve)+ (-10,-1)$) rectangle ($(eve)+ (10,9)$);
+      \node[color=black] at (eve) {Eve};
       \filldraw[very thick,color=blue!70!black!90, fill=blue!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(ciphertext)+ (-1.4,-2.2)$) ($(ciphertext)+ (-1.4,2.2)$) ($(ciphertext)+ (1.4,2.2)$) ($(ciphertext)+ (1.4,-2.2)$)};
        \foreach \y in {-4,...,4}
                  \draw[dashed] ($(ciphertext)+(-1.2,0.5*\y)$)--($(ciphertext)+(1.2,0.5*\y)$);
@@ -114,17 +123,10 @@
     \alert{Authenticity} 
       What if Eve doesn't merely read the ciphertext but also changes it? Or sends something to Bob, claiming to be Alice? This would be a scenario with a stronger adversary. These considerations lead for instance to {\em digital signatures}.
     \end{block}
-      \begin{block}{\large }
-      \end{block}
     \end{column}
     \end{columns}
-    \vfill
-    \vfill
-    \begin{block}{\large }
-    \end{block}
-    \vfill
     \begin{columns}[t]
-      \begin{column}{.48\linewidth}
+    \begin{column}{.3\linewidth}
         \begin{block}{Scytale: a transposition cipher}
         The message ``Help me, I am under attack'' is written on the scytale in rows
         \begin{equation*}
@@ -155,16 +157,12 @@
             \text{\tt PLJB FJMLOQXKQ JBPPXDB.}
           \end{IEEEeqnarray*}
         \end{block}
-
-%        \begin{block}{Navajo Code: an unbroken `linguistic' code}
-%          During WWII machine ciphers have been common among all parties. A major drawback was the time effort to encode and decode. In critical situations that required fast communication encryption was thus dropped revealing the content directly to the enemy. Therefore in 1942 Philip Johnston, a US American engineer, suggested to translate message to the tribal language of the Navajo before transmission. As its grammar and vocabulary was not related to neither European nor Asiatic languages it served as a very secure cipher. Therefore Navajos were recruited as translators and cryptographers. While machine ciphers were frequently broken, the Navajo language was never.
-%        \end{block}
-      \end{column}
-      \begin{column}{.48\linewidth}
-
         \begin{block}{Frequency Analysis}
           The letters of the alphabet do not occur with the same frequency. In English the letter "e" is the most common and occurs a lot more often than for instance "z". So if one knows in what language a plaintext was written, one can decrypt the ciphertext from a monoalphabetic substitution cipher without knowing the substitution scheme. One merely has to count the number of occurences of any letter of the alphabet, compare this with the frequencies of letters of the given language and match corresponding letters. This works better the longer the cipher text is. (Actually if the ciphertext is very short, the cipher might become a one-time pad which is really secure).
         \end{block}
+
+      \end{column}
+      \begin{column}{.3\linewidth}
 
         \begin{block}{The One-Time Pad}
           How could we get a substitution cipher with proper security? The issue of most substitution ciphers is their redundancy. For example the letter "e" might always be substituted by "m". This clearly allows frequency attacks as the number of occurences of "e" is just shifted to "m". In order to get rid of any redundancy or other structures that might be helpful to break the cipher the one-time pad uses an entirely random key that is just as long as the message itself. A binary example as it occurs in any computer is then
@@ -179,6 +177,8 @@
         So adding the key (i.e. applying the XOR (either \ldots or \ldots) operation) makes the ciphertext to look completely random too. In other words: (something completely random) $\oplus$ (something with structure) $=$ (something completely random). As the ciphertext looks random to Eve she has no means to decipher it. Thus the one-time pad is properly secure. As the name already suggest: never ever use it even twice. This would introduce structure and therefore turn the cipher insecure. \\
         Why isn't the OTP used all over the place if it is completely secure? Well, you need to distribute a lot of keys secretely. This is very inconvenient. Current ciphers provide a very good level of security as the resources needed to break them exceed the computational power of recent computer by far. 
         \end{block}
+      \end{column}
+      \begin{column}{.3\linewidth}
 
         \begin{block}{Enigma: a first machine cipher}
           The Enigma was the first electronic device used for encryption enabling far stronger ciphers. The idea was similar to the Vigener Cipher to continuously change the substituion scheme. As the number of possible schemes was rather large this encreased security considerably (provided the implementation did not reveal any information). In a sense the enigma could be considered as a predecessor of modern computers.
