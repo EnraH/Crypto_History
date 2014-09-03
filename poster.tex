@@ -9,7 +9,7 @@
   \boldmath
   \usepackage[english]{babel}
   \usepackage[latin1]{inputenc}
-  \usepackage[orientation=portrait,size=a0,scale=1.4,debug]{beamerposter}
+  \usepackage[orientation=portrait,size=a0,scale=1.2,debug]{beamerposter}
   \usepackage{verbatim}
   \usepackage{IEEEtrantools}
   \usepackage{tikz}
@@ -42,78 +42,13 @@
     \vfill
     \begin{columns}[t]
     \begin{column}{.48\linewidth}
-    \begin{block}{\large Ways of Hiding Information}
-      \begin{figure}
-      \centering
-      \begin{tikzpicture}[font=\footnotesize,
-          grow=right, level 1/.style={sibling distance=6em},
-          level 2/.style={sibling distance=6em}, level distance=10cm]
-          \node {Hidding Information} % root
-            child { node {Steganography: writing physically hidden}
-            }
-            child { node {\textbf{Cryptography} information hidden}
-              child { node {Substitution} }
-              child { node {Permutation} }
-            };
-      \end{tikzpicture}
-      \caption{Categories of Secrecy}
-      \end{figure}
-      \alert{Cryptography} hiding content of a message without hiding the writing itself. \\
-      \alert{Steganography} physically hiding the message (invisible ink, \ldots)
-    \end{block}
-    \begin{block}{\large The Scheme of Cryptography}
-    \begin{figure}
-      \begin{tikzpicture}[scale=0.8]
-      \coordinate (plaintext1) at (-20.,0);
-      \coordinate (plaintext2) at (20.,0);
-      \coordinate (key1) at (-11.,8);
-      \coordinate (key2) at (9,8);
-      \coordinate (cipher_algorithm) at (-10,0);
-      \coordinate (decipher_algorithm) at (10,0);
-      \coordinate (ciphertext) at (0,0);
-      % drawing the text sheets
-      \filldraw[very thick,color=blue!70!black!90, fill=blue!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(ciphertext)+ (-1.4,-2.2)$) ($(ciphertext)+ (-1.4,2.2)$) ($(ciphertext)+ (1.4,2.2)$) ($(ciphertext)+ (1.4,-2.2)$)};
-       \foreach \y in {-4,...,4}
-                 \draw[dashed] ($(ciphertext)+(-1.2,0.5*\y)$)--($(ciphertext)+(1.2,0.5*\y)$);
-      \filldraw[very thick,color=red!70!black!90, fill=red!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(plaintext1)+ (-1.4,-2.2)$) ($(plaintext1)+ (-1.4,2.2)$) ($(plaintext1)+ (1.4,2.2)$) ($(plaintext1)+ (1.4,-2.2)$)};
-       \foreach \y in {-4,...,4}
-                 \draw ($(plaintext1)+(-1.2,0.5*\y)$)--($(plaintext1)+(1.2,0.5*\y)$);
-      \filldraw[very thick,color=red!70!black!90, fill=red!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(plaintext2)+ (-1.4,-2.2)$) ($(plaintext2)+ (-1.4,2.2)$) ($(plaintext2)+ (1.4,2.2)$) ($(plaintext2)+ (1.4,-2.2)$)};
-       \foreach \y in {-4,...,4}
-                 \draw ($(plaintext2)+(-1.2,0.5*\y)$)--($(plaintext2)+(1.2,0.5*\y)$);
-      % drawing the keys
-      \draw[line width=2pt] (key1) circle (0.5);
-      \draw[line width=2pt] ($(key1) + (0.5,0)$) -- ($(key1) + (2,0)$);
-      \filldraw plot coordinates{($(key1) + (1.6,0)$) ($(key1) + (2,0)$) ($(key1) + (2,-0.5)$) ($(key1) + (1.6,-0.5)$) };
-      \draw[line width=2pt] (key2) circle (0.5);
-      \draw[line width=2pt] ($(key2) + (0.5,0)$) -- ($(key2) + (2,0)$);
-      \filldraw plot coordinates{($(key2) + (1.6,0)$) ($(key2) + (2,0)$) ($(key2) + (2,-0.5)$) ($(key2) + (1.6,-0.5)$) };
-      % drawing the cipher algorithms
-      \filldraw[very thick,color=black!70!black!90, fill=black!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(cipher_algorithm)+ (-1.4,-1.4)$) ($(cipher_algorithm)+ (-1.4,1.4)$) ($(cipher_algorithm)+ (1.4,1.4)$) ($(cipher_algorithm)+ (1.4,-1.4)$)};
-      \node [label={[white] above:\tiny $>>>>$}] (label) at (cipher_algorithm) {};
-      \node [label={[white] below:\tiny $<<<<$}] (label) at (cipher_algorithm) {};
-      \filldraw[very thick,color=black!70!black!90, fill=black!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(decipher_algorithm)+ (-1.4,-1.4)$) ($(decipher_algorithm)+ (-1.4,1.4)$) ($(decipher_algorithm)+ (1.4,1.4)$) ($(decipher_algorithm)+ (1.4,-1.4)$)};
-      \node [label={[white] above:\tiny $>>>>$}] (label) at (decipher_algorithm) {};
-      \node [label={[white] below:\tiny $<<<<$}] (label) at (decipher_algorithm) {};
-      %\draw[fill=white] \gearmacro{8}{2}{2.4}{20}{2};
-      % drawing the arrows
-      \draw[line width=2pt, ->] ($(key1) + (+1,-1.5)$) -- ($(cipher_algorithm) + (0,3)$);
-      \draw[line width=2pt, ->] ($(plaintext1) + (3.,0)$) -- ($(cipher_algorithm) + (-3,0)$);
-      \draw[line width=2pt, ->] ($(cipher_algorithm) + (3,0.)$) -- ($(ciphertext) + (-3.,0.)$);
-      \draw[line width=2pt, ->] ($(ciphertext) + (3.,0.)$) -- ($(decipher_algorithm) + (-3,0.)$);
-      \draw[line width=2pt, <-] ($(decipher_algorithm) + (0,3)$) -- ($(key2) + (+1,-1.5)$);
-      \draw[line width=2pt, ->] ($(decipher_algorithm) + (3,0)$) -- ($(plaintext2) + (-3.,0)$);
-      %\node [label=right:$\S$] (label) at (sep) {};
-      % \node [label=right:$\PPT$] (label) at (ppt) {};
-      %\node [label=right:$\rho_{AB}$] (label) at (rho) {};
-      %\node [label=right:$\mathcal{D}$] (label) at (dens) {};
-      \end{tikzpicture}
-    \end{figure}
-    The plaintext is together with a key are given to an encryption algorithm generating the ciphertext. The ciphertext is then sent to another party. With the right key the  message can be deciphered again.
+    \begin{block}{A secret history}
+      Having particular information can be a great advantage, as well as not having some information can be a gread disadvantage. This has a wide range of policital, economical and strategic implications. Intelligence services around the world gather information to support politicians and the army, plagiarism can cause severe economical losses. This spurred attempts to hide information and on the contrary reveal hidden information. \par
+      As secret services try to maintain advantages a good deal of information about cryptography itself is veiled. Discoveries are hidden, records are classified, the involved are sworn to silence. Therefore the history of cryptography remains shadowy at some points.
     \end{block}
     \end{column}
     \begin{column}{.48\linewidth}
-      \begin{block}{\large The neverending competition between Cryptographers and Cryptanalysts}
+      \begin{block}{The neverending competition between Cryptographers and Cryptanalysts}
         Cryptanalysts study cryptographic systems and try to break them. They search for ways to access the hidden information. In history the advantage alternated between cryptographers and cryptanalysists. 
         \par First cryptographic monoalphabetic substitution ciphers --- i.e. ciphers built on replacing letters according to a fixed scheme like the Caesar cipher --- were safe as long the substitution scheme was kept secret. The first cryptanalytic breakthrough stemmed from linguistic studies of the Koran in the 9\textsuperscript{th} century in the Arabic world. Theologians analyzed the structure of text in order to determine their origin, thereby counting letters and studying the frequencies with which they appeared. It turned out: some letters are used more often than others. In English for example the most frequent letter is ``e''. Counting the frequencies of letters in a ciphertext makes it pretty easy to guess the replacement scheme used to encrypt a message. Once {\em frequency analysis} was developed cryptanalysists could basically break any message until cryptographic methods were developed further.
         \par One might think, that after the one-time pad was shown to be absolutely secure, the competition might have been settled in favor of cryptographers. Unfortunately the one-time pad is not efficient as the key (that has to be destributed secretely) has to be as long as the message itself.
@@ -194,24 +129,9 @@
     \vfill
     \begin{columns}[t]
       \begin{column}{.48\linewidth}
-        \begin{block}{Scytale: a transposition cipher}
-        The message ``Help me, I am under attack'' is written on the scytale in rows
-        \begin{equation*}
-        \begin{array}{|c|c|c|c|c|}
-              &    &    &    &   \\
-           H  & E  & L  & P  & M \\
-           E  & I  & A  & M  & U \\
-           N  & D  & E  & R  & A \\
-           T  & T  & A  & C  & K \\   
-              &    &    &    &   
-        \end{array}
-        \end{equation*}
-        After unwinding the band it becomes scrambled to
-        \begin{equation*}
-          HENTEIDTLAEAPMRCMUAK
-        \end{equation*}
+        \begin{block}{Steganography in the ancient world}
+          The Greek historian Herodotus has written about ways to conceal information. In the 5th century BC messages were covered with a layer of wax. In another instance the message was tattooed on the shaved head of a messenger. After the hair had grown again the message could finally be delivered. This way of hiding the message physically is called steganography.
         \end{block}
-
         \begin{block}{Navajo Code: an unbroken `linguistic' code}
           During WWII machine ciphers have been common among all parties. A major drawback was the time effort to encode and decode. In critical situations that required fast communication encryption was thus dropped revealing the content directly to the enemy. Therefore in 1942 Philip Johnston, a US American engineer, suggested to translate message to the tribal language of the Navajo before transmission. As its grammar and vocabulary was not related to neither European nor Asiatic languages it served as a very secure cipher. Therefore Navajos were recruited as translators and cryptographers. While machine ciphers were frequently broken, the Navajo language was never.
         \end{block}
@@ -224,6 +144,9 @@
         \end{block}
 
         \begin{block}{The One-Time Pad}
+          The one-time pad --- a cipher with an entirely random key as long as the meassage --- was reinvented in 1917 (after having been described before in 1882). As long as the key is secret and the one-time pad is merely used once, as the name suggests, it is entirely secure as Shannon has shown in 1945. The major drawback though is that long keys have to be exchanged without being revealed or tampered. \par
+          The hotline between Moscow and Washington D.C. established after the Cuban Missle Crisis in 1963 was secured with a one-time pad. \par
+          Further it has theoretical significance in information theory and cryptography.
         \end{block}
         \begin{block}{Enigma: a first machine cipher}
         \end{block}

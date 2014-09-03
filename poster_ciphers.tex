@@ -57,7 +57,7 @@
       \end{tikzpicture}
 %      \caption{Categories of Secrecy}
       \end{figure}
-      \alert{Cryptography} hiding content of a message without hiding the writing itself. \\
+      \alert{Cryptography} hiding content of a message without hiding the writing itself by replacing letters with others (substitution) or scrambling the letters of the message (permutation). \\
       \alert{Steganography} physically hiding the message (invisible ink, \ldots)
     \end{block}
     \end{column}
@@ -117,11 +117,11 @@
       %\node [label=right:$\mathcal{D}$] (label) at (dens) {};
       \end{tikzpicture}
     \end{figure}
-    A first player, usually called Alice, encrypts the plaintext according to the encryption algorithm using her key. The ciphertext Alice generated is then sent to another party, often called Bob. With his key he can execute the decryption algorithm in order to obtain the plaintext again. \\
+    First a player, usually called Alice, encrypts the plaintext according to the encryption algorithm using her key. The ciphertext Alice generated is then sent to another party, often called Bob. With his key he can execute the decryption algorithm in order to obtain the plaintext again. \\
     \alert{Security} 
       What does it mean for a cipher to be secure? The notion of security depends on the abalities we imagine an adversary has to attack the cipher. The adversary, often referred to as Eve, can at least read the ciphertext, i.e. tap the wire between Alice and Bob. Usually Eve also knows the encryption and decryption algorithms. Obviously Alice and Bob have to keep their key secret. If Eve's knowledge of the algorithms and the ciphertext suffices to retrieve the plaintext, the cipher is insecure. Otherwise Alice and Bob can communicate secretely. \\
     \alert{Authenticity} 
-      What if Eve doesn't merely read the ciphertext but also changes it? Or sends something to Bob, claiming to be Alice? This would be a scenario with a stronger adversary. These considerations lead for instance to {\em digital signatures}.
+      What if Eve doesn't merely read the ciphertext but also changes it? Or sends something to Bob, claiming to be Alice? These considerations lead for instance to {\em digital signatures} aiming to insure Bob that what he had sent was not altered or faked.
     \end{block}
     \end{column}
     \end{columns}
@@ -139,7 +139,7 @@
               &    &    &    &   
         \end{array}
         \end{equation*}
-        After unwinding the band it becomes scrambled to
+        After unwinding the band it is scrambled to
         \begin{equation*}
           \text{\tt HENTEIDTLAEAPMRCMUAK}
         \end{equation*}
@@ -157,10 +157,12 @@
             \text{\tt PLJB FJMLOQXKQ JBPPXDB.}
           \end{IEEEeqnarray*}
         \end{block}
-        \begin{block}{Frequency Analysis}
-          The letters of the alphabet do not occur with the same frequency. In English the letter "e" is the most common and occurs a lot more often than for instance "z". So if one knows in what language a plaintext was written, one can decrypt the ciphertext from a monoalphabetic substitution cipher without knowing the substitution scheme. One merely has to count the number of occurences of any letter of the alphabet, compare this with the frequencies of letters of the given language and match corresponding letters. This works better the longer the cipher text is. (Actually if the ciphertext is very short, the cipher might become a one-time pad which is really secure).
+        \begin{block}{Vigenere Cipher}
+          In order to reduce redundancy and thus prevent frequency attacks several substitution schemes were used one after the other. For instance the first letter of the plain text would be encrypted with Caesar shift of 3, the second with a shift of 12, \ldots and eventually starting again with a shift of 3. Once the number of different substitution schemes is known, the cipher is again vulnerable to frequency attacks. Taking a computer or a cipher machine, like Enigma, one can increase the number substitution schemes immensely and thus security.
         \end{block}
-
+        \begin{block}{Frequency Analysis}
+          The letters of the alphabet do not occur with the same frequency. In English the letter "e" is the most common and occurs a lot more often than for instance "z". So if one knows in what language a plaintext was written, one can decrypt the ciphertext from a monoalphabetic substitution cipher without knowing the substitution scheme, that is the key. One merely has to count the number of occurences of any letter of the alphabet, compare this with the frequencies of letters of the given language and match corresponding letters. This works better the longer the cipher text is. (Actually if the ciphertext is very short, the cipher might become a one-time pad which is really secure).
+        \end{block}
       \end{column}
       \begin{column}{.3\linewidth}
 
@@ -174,14 +176,26 @@
           & \text{gives} \\
           \text{Ciphertext}\quad & {\tt 11011000\ 10011010\ 11111101\ 10110100}
         \end{IEEEeqnarray*}
-        So adding the key (i.e. applying the XOR (either \ldots or \ldots) operation) makes the ciphertext to look completely random too. In other words: (something completely random) $\oplus$ (something with structure) $=$ (something completely random). As the ciphertext looks random to Eve she has no means to decipher it. Thus the one-time pad is properly secure. As the name already suggest: never ever use it even twice. This would introduce structure and therefore turn the cipher insecure. \\
-        Why isn't the OTP used all over the place if it is completely secure? Well, you need to distribute a lot of keys secretely. This is very inconvenient. Current ciphers provide a very good level of security as the resources needed to break them exceed the computational power of recent computer by far. 
+        So adding the random key (i.e. applying the XOR (either \ldots or \ldots) operation) makes the ciphertext look completely random too. Even --- not knowing the key --- could not say whether the ciphertext would stem from the word `oggi' or the word `ciao' (or any other four letter word), as they are all equally likely to appear.
+       % \begin{equation*}
+       % \text{\small (s.th. entirely random)} \oplus \text{\small (s.th. not entirely random)} = \text{\small (s.th. entirely random)}
+       % \end{equation*}
+        Thus the one-time pad is properly secure. But --- as the name already suggest: never ever use it even twice. This would introduce structure and therefore turn the cipher insecure. \\
+        Why isn't the OTP used all over the place if it is completely secure? Well, you need to distribute a lot of keys secretely. This is very inconvenient. %Current ciphers provide a very good level of security as the resources needed to break them exceed the computational power of recent computer by far. 
         \end{block}
+        \begin{block}{Side Channel Attacks}
+          While frequency attacks or brute force approaches (i.e. trying out a large number of keys) aim at the cipher itself, side channel attacks exploit weaknesses in the implementation of the cipher. For instance one might surveil the power consumption of the processor during encryption. This might reveal patterns that allow to break the cipher.
+        \end{block}
+
       \end{column}
       \begin{column}{.3\linewidth}
 
         \begin{block}{Enigma: a first machine cipher}
           The Enigma was the first electronic device used for encryption enabling far stronger ciphers. The idea was similar to the Vigener Cipher to continuously change the substituion scheme. As the number of possible schemes was rather large this encreased security considerably (provided the implementation did not reveal any information). In a sense the enigma could be considered as a predecessor of modern computers.
+        \end{block}
+
+        \begin{block}{Blockciphers: Lucifer}
+          All previous ciphers processed the plaintext letter by letter (and are thus called \alert{stream ciphers}). Current ciphers encrypt entire code blocks, that is a fixed number of 0's and 1's in a computer.
         \end{block}
  
         \begin{block}{Encryption Tools}
@@ -192,6 +206,9 @@
           \node[inner sep=0pt] (qr1) at (0,-3) {\includegraphics[width=.15\textwidth]{qr_gnupg_swlist}};
           \end{tikzpicture}
           \end{figure}
+        \end{block}
+        \begin{block}{Secure Key Destribution: Asymmetric Encryption}
+          
         \end{block}
       \end{column}
     \end{columns}
