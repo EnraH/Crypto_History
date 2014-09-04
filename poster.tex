@@ -9,7 +9,7 @@
   \boldmath
   \usepackage[english]{babel}
   \usepackage[latin1]{inputenc}
-  \usepackage[orientation=portrait,size=a0,scale=1.2,debug]{beamerposter}
+  \usepackage[orientation=portrait,size=a0,scale=1.0,debug]{beamerposter}
   \usepackage{verbatim}
   \usepackage{IEEEtrantools}
   \usepackage{tikz}
@@ -33,29 +33,12 @@
   \begin{document}
   \tikzset{
     TLstegan/.style = {fill = gray!20!white,
-                      draw=AHdarkblue,align= left,text width=6cm,font=\tiny,line width=2pt},
+                      draw=AHdarkblue,align= left,text width=5cm,font=\tiny,line width=2pt},
     TLcrypto/.style = {fill = gray!20!white,
-                      draw=AHdarkorange,align= left,text width=6cm,font=\tiny,line width=2pt},
+                      draw=AHdarkorange,align= left,text width=5cm,font=\tiny,line width=2pt},
     TLphases/.style = {color=black,left,text width=10cm,font=\tiny,line width=0pt}
   }
   \begin{frame}{} 
-    \vfill
-    \begin{columns}[t]
-    \begin{column}{.3\linewidth}
-    \begin{block}{A secret history}
-      Having particular information can be a great advantage, as well as not having some information can be a great disadvantage. This has a wide range of policital, economical and strategic implications. Intelligence services around the world gather information to support politicians and the army, plagiarism can cause severe economical losses. This has spurred attempts to hide information and on the contrary reveal hidden information. \par
-      As secret services try to maintain advantages in accessing or hiding information a good deal of information about cryptography itself is veiled. Discoveries are hidden, records are classified, the involved are sworn to silence. Therefore the history of cryptography remains shadowy at some points and occasionally had to be rewritten after discoveries were published belatedly.
-    \end{block}
-    \end{column}
-    \begin{column}{.3\linewidth}
-      \begin{block}{The neverending competition between Cryptographers and Cryptanalysts}
-        While cryptographers search for ways to hide information cryptanalysts study ciphers and try to break them. They search for ways to access the hidden information. In history the advantage alternated between cryptographers and cryptanalysists. 
-        \par Monoalphabetic ciphers like the Caesar Cipher turned insecure as frequency analysis were developed. Cryptographers therefore introduced polyalphabetic ciphers, like the Vigenere Cipher. Consequently frequency analysis were refined until cryptanalysts got access to the information again. And so on and so forth \ldots 
-      \end{block}
-    \end{column}
-    \begin{column}{.3\linewidth}
-    \end{column}
-    \end{columns}
     \vfill
     \vfill
     \begin{block}{\large Timeline of Cryptography}
@@ -73,7 +56,6 @@
           \coordinate (one-time-pad) at (1.7,0);
           \coordinate (enigma) at (1.8,0);
           \coordinate (rejewski) at (3.2,0);
-          \coordinate (rejewski) at (3.2,0);
           \coordinate (navajo) at (4.2,0);
           \coordinate (colossus) at (4.3,0);
           \coordinate (nsa) at (5.2,0);
@@ -81,6 +63,7 @@
           \coordinate (des) at (7.6,0);
           \coordinate (diffie-hellman) at (7.6,0);
           \coordinate (rsa) at (7.7,0);
+          \coordinate (BB84) at (8.4,0);
           \coordinate (pgp) at (9.1,0); 
           % phases of cryptography
           \fill [AHdarkorange!30] ($(Caesar) + (0.0,-8)$) rectangle (30,-7);
@@ -113,32 +96,43 @@
           \draw[line width=1pt] ($(one-time-pad) + (19,0.0)$) -- ($(one-time-pad) + (19,1.0)$) node [TLcrypto,above left] {\textbf{1917} the {\em one-time-pad} --- a cipher with absolute security --- is invented};
           \draw[line width=1pt] ($(enigma) + (19,0.0)$) -- ($(enigma) + (19,3.0)$) node [TLcrypto,above] {\textbf{1918}{\em ENIGMA} invented by Arthur Scherbius};
           \draw[line width=1pt] ($(navajo) + (19,0.0)$) -- ($(navajo) + (19,1.0)$) node [TLcrypto,above] {\textbf{1942} {\em Navajos} join the US army to translate, i.e. encipher messages};
-          \draw[line width=1pt] ($(feistel) + (19,0.0)$) -- ($(feistel) + (19,7.0)$) node [TLcrypto,above] {\textbf{1971} Horst Feistel develops the block cipher {\em Lucifer} for IBM};
+          \draw[line width=1pt] ($(feistel) + (19,0.0)$) -- ($(feistel) + (19,7.0)$) node [TLcrypto,above left] {\textbf{1971} Horst Feistel develops the block cipher {\em Lucifer} for IBM};
+          \draw[line width=1pt] ($(BB84) + (19,0.0)$) -- ($(BB84) + (19,7.0)$) node [TLcrypto,above right] {\textbf{1984} Charles Bennet and Gilles Brassard invent a protocol for quantum key distribution, referred to as {\em BB84}};
           \draw[line width=1pt] ($(des) + (19,0.0)$) -- ($(des) + (19,4.0)$) node [TLcrypto,above left] {\textbf{1976} A version of Lucifer is made the {\em Data Encryption Standard (DES)}};
           \draw[line width=1pt] ($(rsa) + (19,0.0)$) -- ($(rsa) + (19,4.0)$) node [TLcrypto,above right] {\textbf{1977} Ron Rivest, Adi Shamir and Leonard Aldeman develop an asymmetric {\em public key crypto} algorithm {\em RSA} (as proposed by Diffie)};
           \draw[line width=1pt] ($(diffie-hellman) + (19,0.0)$) -- ($(diffie-hellman) + (19,0.5)$) node [TLcrypto,above] {\textbf{1976} Martin Hellman, Whitfield Diffie and Ralph Merkle publish a protocol for  {\em cryptographic key exchange}};
           \draw[line width=1pt] ($(pgp) + (19,0.0)$) -- ($(pgp) + (19,0.5)$) node [TLcrypto,above right] {\textbf{1991} Phil Zimmermann compiles symmetric, antisymmetric and signing algorithms to a bundle {\em Pretty Good Privacy} intended for broader public use};
           % cryptoanalytic achievements
-          \draw[line width=1pt] ($(freq-analysis) + (0,-0.5)$) -- ($(freq-analysis) + (0,-1.0)$) node [TLcrypto,below left] {{\em frequency-analysis}: of monoalphabetic ciphers};
-          \draw[line width=1pt] ($(Babbage) + (0,-0.5)$) -- ($(Babbage) + (0,-1.0)$) node [TLcrypto,below left] {\textbf{1850s} {\em Charles Babbage} breaks polyalphabetic ciphers};
+          \draw[line width=1pt] ($(freq-analysis) + (0,0.)$) -- ($(freq-analysis) + (0,-1.0)$) node [TLcrypto,below left] {{\em frequency-analysis}: of monoalphabetic ciphers};
+          \draw[line width=1pt] ($(Babbage) + (0,0.)$) -- ($(Babbage) + (0,-1.0)$) node [TLcrypto,below left] {\textbf{1850s} {\em Charles Babbage} breaks polyalphabetic ciphers};
+          \draw[line width=1pt] ($(rejewski) + (19,0)$) -- ($(rejewski) + (19,-3.0)$) node [TLcrypto,below left] {\textbf{1932} {\em Marian Rejewski} breaks the Enigma};
           \draw[line width=1pt] ($(colossus) + (19,0)$) -- ($(colossus) + (19,-1.0)$) node [TLcrypto,below left] {\textbf{1943} Tommy Flower implements Max Newman's {\em Colossus}, the first modern computer};
           \draw[line width=1pt] ($(nsa) + (19,0)$) -- ($(nsa) + (19,-1.0)$) node [TLcrypto,below right] {\textbf{1952} the {\em National Security Agency (NSA)} is found};
       \end{tikzpicture}
       \end{figure}
       The timeline shows the greatest achievements in the history of cryptography and cryptanalysis. On the bottom the evolution from monoalphabetic substitution ciphers to current computer based polyalphabetic substition ciphers is drawn.
     \end{block}
-    \vfill
+%%%% End of timeline %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
     \begin{columns}[t]
-      \begin{column}{.48\linewidth}
+    \begin{column}{.3\linewidth}
+    \begin{block}{A secret history}
+      Having particular information can be a great advantage, just as not having certain information can be of great disadvantage. This has a wide range of policital, economical and strategic implications. Intelligence services around the world gather information to support politicians and the army, plagiarism can cause severe economical losses. This has spurred attempts to hide information and on the contrary reveal hidden information. \par
+      As in particular secret services try to maintain advantages in accessing or hiding information a good deal of information about cryptography itself is veiled. Discoveries are hidden, records are classified, the involved are sworn to silence. Therefore the history of cryptography remains shadowy at some points and occasionally had to be rewritten after discoveries were published belatedly.
+    \end{block}
+      \begin{block}{The neverending competition between Cryptographers and Cryptanalysts}
+        While cryptographers search for ways to hide information cryptanalysts study ciphers and try to break them. They search for ways to access the hidden information. In history the advantage alternated between cryptographers and cryptanalysists. 
+        \par Monoalphabetic ciphers like the Caesar Cipher turned insecure as frequency analysis were developed. Cryptographers therefore introduced polyalphabetic ciphers, like the Vigenere Cipher. Consequently frequency analysis were refined until cryptanalysts got access to the information again. And so on and so forth \ldots 
+      \end{block}
         \begin{block}{Steganography in the ancient world}
-          The Greek historian Herodotus has written about ways to conceal information. In the 5th century BC messages were covered with a layer of wax. In another instance the message was tattooed on the shaved head of a messenger. After the hair had grown again the message could finally be delivered. This way of hiding the message physically is called steganography.
+          The Greek historian Herodotus has written about ways to conceal information. In the 5th century BC messages were covered with a layer of wax. In another instance the message was tattooed on the shaved head of a messenger. After the hair had grown again the message could finally be delivered. These ways of hiding messages physically are called steganography (Greek {\it steganos} ``concealed, covered'').
         \end{block}
-        \begin{block}{Navajo Code: an unbroken `linguistic' code}
-          During WWII machine ciphers have been common among all parties. A major drawback was the time effort to encode and decode. In critical situations that required fast communication encryption was thus dropped revealing the content directly to the enemy. Therefore in 1942 Philip Johnston, a US American engineer, suggested to translate message to the tribal language of the Navajo before transmission. As its grammar and vocabulary was not related to neither European nor Asiatic languages it served as a very secure cipher. Therefore Navajos were recruited as translators and cryptographers. While machine ciphers were frequently broken, the Navajo language was never.
-        \end{block}
-      \end{column}
-      \begin{column}{.48\linewidth}
-        \begin{block}{The Caesar Shift Cipher}
+    \end{column}
+    \begin{column}{.3\linewidth}
+        \begin{block}{The Caesar Shift Cipher: monoalphabetic ciphers}
+          The first documented military use of cryptography is attributed to Caesar. In order to secure a message to the besieged Cicero against being read by his enemies, Caesar replaced the Roman letters by Greek ones. Ever since cryptography and cryptanalysis have played a crucial role in wars. The military and secret services have focussed on developing both, ciphers and methods to break them. \par
+          Caesar also used substitution ciphers without introducing new symbols by simply replacing Roman letters by others. The permutation scheme was the key for these ciphers and had be kept secret.
         \end{block}
 
         \begin{block}{Frequency Analysis}
@@ -146,11 +140,31 @@
         \end{block}
 
         \begin{block}{The One-Time Pad}
-          The one-time pad --- a cipher with an entirely random key as long as the meassage --- was reinvented in 1917 (after having been described before in 1882). As long as the key is secret and the one-time pad is merely used once, as the name suggests, it is entirely secure as Shannon has shown in 1945. The major drawback though is that long keys have to be exchanged without being revealed or tampered. \par
+          The one-time pad --- a cipher with an entirely random key as long as the meassage --- was (re-)invented in 1917 (after having been described before in 1882). As long as the key is secret and the one-time pad is merely used once, as the name suggests, it is entirely secure as Shannon has shown in 1945. The major drawback though is that keys as long as the message have to be exchanged without being revealed or tampered. \par
           The hotline between Moscow and Washington D.C. established after the Cuban Missle Crisis in 1963 was secured with a one-time pad. \par
-          Further it has theoretical significance in information theory and cryptography.
+          Further it has theoretical significance in information theory and research on cryptography.
         \end{block}
+    \end{column}
+    \begin{column}{.3\linewidth}
         \begin{block}{Enigma: a first machine cipher}
+          In  1918 the German Arthur Scherbius invented the cipher machine Enigma. First the Enigma did not sell well, mostly due to the high costs. But in 1923 Churchhill published how the German encryption during WWI was regularly broken revealing vital information without the Germans taking note that they had been compromised. (As a consequence from information from deciphered telegrams the Americans had finally entered the war.) Realising how bad their communication had been secured in WWI the Germans turned to the Enigma thereby obtaining one of the most advanced crypto systems. \par
+          But even the Enigma was proven not be unbreakable. In 1932 the Polish mathematician Marian Rejewski managed to decipher message encrypted with the Enigma. From a spy he obtain information about how the Enigma functioned. Further he knew that the message key transmitted at the beginning of each message was always sent twice in order to prevent transmission errors. This revealed finally enough information for Rejewski to beak into the Enigma. In 1939 --- just before the German attack on Poland --- the German  increased the security of the enigma. Rejewski could not access their information any longer. In August, just one month before the outbreak of WWII, the Polish smuggled their knowledge about the Enigma to the French and the British who still assumed the Enigma was unbreakable. \par
+          In the following years the British built up a group of cryptanalysists, including Alan Turing, who achieved to regularly decipher the German communication. Again withouth them having a clue that their communication was not secure. The acquired information proved to be of high strategic importance and a crucial advantage to the allied forces. 
+        \end{block}
+        \begin{block}{Navajo Code: an unbroken `linguistic' code}
+          During WWII machine ciphers like the Enigma were commonly used. A major drawback was the time effort to encode and decode. In critical situations that required fast communication encryption was thus dropped revealing the content directly to the enemy receiving the radio signal. Therefore in 1942 Philip Johnston, a US American engineer, suggested to translate message to the tribal language of the Navajo before transmission. As its grammar and vocabulary was not related to neither European nor Asiatic languages it served as a very secure cipher. Therefore Navajos were recruited as translators and cryptographers. While machine ciphers were frequently broken, the Navajo language was never.
+        \end{block}
+
+        \begin{block}{Lucifer: The Beginning of Block Ciphers}
+          In 1934 Horst Feistel had come from Germany to the US. During the war he was put under house arrest. After the war when entering research on cryptography NSA did not approve of his work as it might deprive the organization from access to information. Indeed in the 70s while working for IBM he developed the Lucifer algorithm --- a block cipher held to be strongest product on the commercial market. Therefore Lucifer was the core of the Data Encryption Standard (DES) adopted in 1976. Again rumours say NSA interfered the adoption of the standard in order to weaken it. Until today block ciphers are the working horses of cryptography used to encrypt the bulk of data.
+        \end{block}
+
+        \begin{block}{Diffie-Hellman: Key Exchange Protocol}
+          So far we have always assumed that the parties wanting to communicate with one another securely already share a key. We have not wondered how they could agree on a key, that as to be secret on any account. Otherwise all subsequent encryption is compromised. Martin Hellman, Whitfield Diffie and Ralph Merkle worked on the issue of how to agree on a secret key using a public transmission line (called channel). In 1976 they publish a protocol based on so-called one-way functions.
+        \end{block}
+
+        \begin{block}{RSA: asymmetric encryption}
+          In 1977 Ron Rivest, Adi Shamir and Leonard Aldeman developed a protocol for public key encryption, implementing an idea sketched before by Diffie. Say Alice wants to secretly send a message to Bob. So she'd take a Bob's public key, that is known to everybody, and use it to encrypt her message. Then she sends the encrypted message to Bob. He'd then use his private key to decrypt the message. Thus Alice and Bob do not have to share a common key before. Alice merely has to get Bob's public key from a trusted database.
         \end{block}
       \end{column}
     \end{columns}
