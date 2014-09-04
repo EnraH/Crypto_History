@@ -41,18 +41,19 @@
   \begin{frame}{} 
     \vfill
     \begin{columns}[t]
-    \begin{column}{.48\linewidth}
+    \begin{column}{.3\linewidth}
     \begin{block}{A secret history}
-      Having particular information can be a great advantage, as well as not having some information can be a gread disadvantage. This has a wide range of policital, economical and strategic implications. Intelligence services around the world gather information to support politicians and the army, plagiarism can cause severe economical losses. This spurred attempts to hide information and on the contrary reveal hidden information. \par
-      As secret services try to maintain advantages a good deal of information about cryptography itself is veiled. Discoveries are hidden, records are classified, the involved are sworn to silence. Therefore the history of cryptography remains shadowy at some points.
+      Having particular information can be a great advantage, as well as not having some information can be a great disadvantage. This has a wide range of policital, economical and strategic implications. Intelligence services around the world gather information to support politicians and the army, plagiarism can cause severe economical losses. This has spurred attempts to hide information and on the contrary reveal hidden information. \par
+      As secret services try to maintain advantages in accessing or hiding information a good deal of information about cryptography itself is veiled. Discoveries are hidden, records are classified, the involved are sworn to silence. Therefore the history of cryptography remains shadowy at some points and occasionally had to be rewritten after discoveries were published belatedly.
     \end{block}
     \end{column}
-    \begin{column}{.48\linewidth}
+    \begin{column}{.3\linewidth}
       \begin{block}{The neverending competition between Cryptographers and Cryptanalysts}
-        Cryptanalysts study cryptographic systems and try to break them. They search for ways to access the hidden information. In history the advantage alternated between cryptographers and cryptanalysists. 
-        \par First cryptographic monoalphabetic substitution ciphers --- i.e. ciphers built on replacing letters according to a fixed scheme like the Caesar cipher --- were safe as long the substitution scheme was kept secret. The first cryptanalytic breakthrough stemmed from linguistic studies of the Koran in the 9\textsuperscript{th} century in the Arabic world. Theologians analyzed the structure of text in order to determine their origin, thereby counting letters and studying the frequencies with which they appeared. It turned out: some letters are used more often than others. In English for example the most frequent letter is ``e''. Counting the frequencies of letters in a ciphertext makes it pretty easy to guess the replacement scheme used to encrypt a message. Once {\em frequency analysis} was developed cryptanalysists could basically break any message until cryptographic methods were developed further.
-        \par One might think, that after the one-time pad was shown to be absolutely secure, the competition might have been settled in favor of cryptographers. Unfortunately the one-time pad is not efficient as the key (that has to be destributed secretely) has to be as long as the message itself.
+        While cryptographers search for ways to hide information cryptanalysts study ciphers and try to break them. They search for ways to access the hidden information. In history the advantage alternated between cryptographers and cryptanalysists. 
+        \par Monoalphabetic ciphers like the Caesar Cipher turned insecure as frequency analysis were developed. Cryptographers therefore introduced polyalphabetic ciphers, like the Vigenere Cipher. Consequently frequency analysis were refined until cryptanalysts got access to the information again. And so on and so forth \ldots 
       \end{block}
+    \end{column}
+    \begin{column}{.3\linewidth}
     \end{column}
     \end{columns}
     \vfill
@@ -141,6 +142,7 @@
         \end{block}
 
         \begin{block}{Frequency Analysis}
+          One of the first cryptanalytic breakthroughs stemmed from linguistic studies of the Koran in the 9\textsuperscript{th} century in the Arabic world. Theologians analyzed the structure of text in order to determine their origin, thereby counting letters and studying the frequencies with which they appeared. It turned out: some letters are used more often than others. In English for example the most frequent letter is ``e''. Counting the frequencies of letters in a ciphertext makes it pretty easy to guess the replacement scheme used to encrypt a message. Once {\em frequency analysis} was developed cryptanalysists could basically break any message until cryptographic methods were developed further. In 1553 the Italian Giovan Battista Bellaso suggested to use more then just one substitution scheme and switch among those. In the 19\textsuperscript{th} century the British Charles Babbage refined frequency analysis and broke into these polyalphabetic ciphers.
         \end{block}
 
         \begin{block}{The One-Time Pad}
