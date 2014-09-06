@@ -9,3 +9,5 @@ beamerthemeDreuw.sty
 *.snm
 *.toc
 *.nav
+img/*
+qr_codes/*
