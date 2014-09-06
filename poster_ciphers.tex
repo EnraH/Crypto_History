@@ -13,6 +13,7 @@
   \usepackage{IEEEtrantools}
   \usepackage{tikz}
   \usetikzlibrary{calc}
+  \usepackage{wrapfig}
 
   \newcommand{\gearmacro}[5]{%  
     \foreach \i in {1,...,#1} {%
@@ -62,7 +63,7 @@
     \end{block}
     \end{column}
     \begin{column}{.63\linewidth}
-    \begin{block}{The Scheme of Cryptography}
+    \begin{alertblock}{The Scheme of Cryptography}
     \begin{figure}
       \begin{tikzpicture}[scale=0.6]
       \coordinate (alice) at (-20,-5);
@@ -77,11 +78,11 @@
       \coordinate (ciphertext) at (0,0);
       % drawing the text sheets
       \draw[draw=AHdarkblue,fill=AHdarkblue!60!white!30] ($(alice)+ (-4,-1)$) rectangle ($(alice)+ (4,15)$);
-      \node[color=black] at (alice) {Alice};
+      \node[color=black] at (alice) {\sf Alice};
       \draw[draw=AHdarkblue,fill=AHdarkblue!60!white!30] ($(bob)+ (-4,-1)$) rectangle ($(bob)+ (4,15)$);
-      \node[color=black] at (bob) {Bob};
+      \node[color=black] at (bob) {\sf Bob};
       \draw[draw=AHdarkblue,dashed,fill=AHdarkblue!60!white!30] ($(eve)+ (-10,-1)$) rectangle ($(eve)+ (10,9)$);
-      \node[color=black] at (eve) {Eve};
+      \node[color=black] at (eve) {\sf Eve};
       \filldraw[very thick,color=blue!70!black!90, fill=blue!50!black!50!] plot[smooth cycle,tension=0.05] coordinates{($(ciphertext)+ (-1.4,-2.2)$) ($(ciphertext)+ (-1.4,2.2)$) ($(ciphertext)+ (1.4,2.2)$) ($(ciphertext)+ (1.4,-2.2)$)};
        \foreach \y in {-4,...,4}
                  \draw[dashed] ($(ciphertext)+(-1.2,0.5*\y)$)--($(ciphertext)+(1.2,0.5*\y)$);
@@ -122,7 +123,7 @@
       What does it mean for a cipher to be secure? The notion of security depends on the abalities we imagine an adversary has to attack the cipher. The adversary, often referred to as Eve, can at least read the ciphertext, i.e. tap the wire between Alice and Bob. Usually Eve also knows the encryption and decryption algorithms. Obviously Alice and Bob have to keep their key secret. If Eve's knowledge of the algorithms and the ciphertext suffices to retrieve the plaintext, the cipher is insecure. Otherwise Alice and Bob can communicate secretely. \\
     \alert{Authenticity} 
       What if Eve doesn't merely read the ciphertext but also changes it? Or sends something to Bob, claiming to be Alice? These considerations lead for instance to {\em digital signatures} aiming to insure Bob that what he had sent was not altered or faked.
-    \end{block}
+    \end{alertblock}
     \end{column}
     \end{columns}
     \begin{columns}[t]
@@ -191,7 +192,17 @@
       \begin{column}{.3\linewidth}
 
         \begin{block}{Enigma: a first machine cipher}
+        \begin{wrapfigure}{l}{0.1\textwidth}
+          \vspace{-20pt}
+            \includegraphics[width=0.1\textwidth]{qr_codes/wiki_enigma.png}
+          \vspace{-20pt}
+        \end{wrapfigure}
           The Enigma was the first electronic device used for encryption enabling far stronger ciphers. The idea was similar to the Vigener Cipher to continuously change the substituion scheme. As the number of possible schemes was rather large this encreased security considerably (provided the implementation did not reveal any information). In a sense the enigma could be considered as a predecessor of modern computers.
+          \begin{figure}
+          \center
+            \includegraphics[width=\textwidth]{img/Enigma-action.png}
+          \end{figure}
+          The core of the Enigma contained three disks with internal wirings. Every time a key on the keyboard was hit the first rotated by $1/26$ of a circle. After 26 rotations of the first disk the second rotated once and after $26\times 26$ keystrokes the third one moved forward. If a key was hit, a small current basically followed the internal wirings until a lamp indicated the corresponding letter of the cipher alphabet. The cipher alphabet changes with every keystroke and repeated only after $26^3$ input letters. \par The ``mirror'' on the left enabled to use the machine as its own decipher machine. Therefore the key contained the simply the initial settings, i.e. which disks were to be inserted at what position and with which initial rotation. 
         \end{block}
 
         \begin{block}{Blockciphers: Lucifer}
@@ -199,13 +210,14 @@
         \end{block}
  
         \begin{block}{Encryption Tools}
-          \begin{figure}[h]
-          \begin{tikzpicture}[scale=1]
-          \node (gnupg) at (0,0) {GNU Privacy Guard (GnPG): implementation of OpenPGP};
-          \node[inner sep=0pt] (qr1) at (-6,-3) {\includegraphics[width=.15\textwidth]{qr_gnupg}};
-          \node[inner sep=0pt] (qr1) at (0,-3) {\includegraphics[width=.15\textwidth]{qr_gnupg_swlist}};
-          \end{tikzpicture}
-          \end{figure}
+        The GNU Privacy Guard provides an open source implementation of OpenPGP. There are a number of frontends for e.g. email or chat clients.
+        \begin{figure}
+          %\vspace{-20pt}
+          \center
+            \includegraphics[width=0.2\textwidth]{qr_codes/gnupg.png} \hspace{20pt}
+            \includegraphics[width=0.2\textwidth]{qr_codes/gnupg_swlist.png}
+          %\vspace{-20pt}
+        \end{figure}
         \end{block}
         \begin{block}{Secure Key Destribution: Asymmetric Encryption}
           

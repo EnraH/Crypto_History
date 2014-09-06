@@ -10,6 +10,7 @@
 
 %\usefonttheme[onlymath]{serif}
 \usefonttheme{professionalfonts}
+\setbeamertemplate{blocks}[shadow=false]  
 
 \setbeamercolor{headline}{fg=AHdarkorange,bg=white}
 \setbeamercolor{footline}{fg=AHdarkorange, bg=white}
@@ -23,11 +24,14 @@
 \setbeamercolor{author in head/foot}{fg=AHdarkorange, bg=white}
 \setbeamercolor{title in head/foot}{fg=AHdarkorange, bg=white}
 
-\setbeamercolor*{normal text}{fg=black, bg=white}
+\setbeamercolor*{normal text}{fg=black, bg=white, series=\rm}
 \setbeamercolor*{block body}{bg=white,fg=black}
 \setbeamerfont{block body}{size=\scriptsize,series=\rm}
+\setbeamerfont{block body alerted}{size=\scriptsize,series=\rm}
 \setbeamercolor*{block title}{fg=AHdarkorange,bg=AHmediumblue}
+\setbeamercolor*{block title alerted}{bg=AHdarkorange,fg=AHmediumblue}
 \setbeamerfont{block title}{size=\large,series=\sf\bf}
+\setbeamerfont{block alerted}{size=\large,series=\sf\bf}
 \setbeamercolor{upper separation line head}{fg=AHdarkorange}
 
 \setbeamercolor*{example body}{fg=AHdarkblue,bg=white}
@@ -44,19 +48,19 @@
 \setbeamertemplate{navigation symbols}{}  % no navigation on a poster
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setbeamertemplate{block begin}{
-  \vskip.75ex
-  \begin{beamercolorbox}[rounded=true,shadow=false,leftskip=1cm,colsep*=.75ex]{block title}%
-    \usebeamerfont*{block title}\insertblocktitle
-  \end{beamercolorbox}%
-  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
-  \usebeamerfont{block body}%
-  \begin{beamercolorbox}[rounded=true,shadow=false,colsep*=.75ex,sep=.75ex,vmode]{block body}%
-    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
-  }
-  \setbeamertemplate{block end}{
-  \end{beamercolorbox}
-}
+%\setbeamertemplate{block begin}{
+%  \vskip.75ex
+%  \begin{beamercolorbox}[rounded=true,shadow=false,leftskip=1cm,colsep*=.75ex]{block title}%
+%    \usebeamerfont*{block title}\insertblocktitle
+%  \end{beamercolorbox}%
+%  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+%  \usebeamerfont{block body}%
+%  \begin{beamercolorbox}[rounded=true,shadow=false,colsep*=.75ex,sep=.75ex,vmode]{block body}%
+%    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+%  }
+%  \setbeamertemplate{block end}{
+%  \end{beamercolorbox}
+%}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setbeamertemplate{headline}{  
