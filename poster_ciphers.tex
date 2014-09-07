@@ -8,7 +8,7 @@
   \usepackage{amsmath,amsthm, amssymb, amsfonts, latexsym}
   \usepackage[english]{babel}
   \usepackage[latin1]{inputenc}
-  \usepackage[orientation=portrait,size=a0,scale=1.2,debug]{beamerposter}
+  \usepackage[orientation=portrait,size=a0,scale=1.0,debug]{beamerposter}
   \usepackage{verbatim}
   \usepackage{IEEEtrantools}
   \usepackage{tikz}
@@ -41,8 +41,8 @@
   \begin{frame}{} 
     \vfill
     \begin{columns}[t]
-    \begin{column}{.3\linewidth}
-    \begin{block}{Categories of Secrecy}
+      \begin{column}{.32\linewidth}
+    \begin{alertblock}{Categories of Secrecy}
       \begin{figure}
       \centering
       \begin{tikzpicture}[font=\footnotesize,
@@ -60,9 +60,9 @@
       \end{figure}
       \alert{Cryptography} hiding content of a message without hiding the writing itself by replacing letters with others (substitution) or scrambling the letters of the message (permutation). \\
       \alert{Steganography} physically hiding the message (invisible ink, \ldots)
-    \end{block}
+    \end{alertblock}
     \end{column}
-    \begin{column}{.63\linewidth}
+    \begin{column}{.65\linewidth}
     \begin{alertblock}{The Scheme of Cryptography}
     \begin{figure}
       \begin{tikzpicture}[scale=0.6]
@@ -127,7 +127,7 @@
     \end{column}
     \end{columns}
     \begin{columns}[t]
-    \begin{column}{.3\linewidth}
+    \begin{column}{.32\linewidth}
         \begin{block}{Scytale: a transposition cipher}
         The message ``Help me, I am under attack'' is written on the scytale in rows
         \begin{equation*}
@@ -147,6 +147,11 @@
         The scytale is thus a permutation cipher.
         \end{block}
         \begin{block}{The Caesar Shift Cipher}
+          \begin{wrapfigure}{l}{0.1\textwidth}
+            \vspace{-20pt}
+              \includegraphics[width=0.1\textwidth]{qr_codes/khan_caesar.png}
+            \vspace{-20pt}
+          \end{wrapfigure}
           The simplest substitution cipher is the Caesar Cipher. Caesar shifted all the letters down the alphabet by a fixed step, say for instance 3 letters. The plaintext and ciphertext alphabet are associated as follows
           \begin{IEEEeqnarray*}{RL}
             \text{Plaintext:}\quad &\text{\tt ABCDEFGHIJKLMNOPQRSTUVWXYZ} \\
@@ -164,10 +169,19 @@
         \begin{block}{Frequency Analysis}
           The letters of the alphabet do not occur with the same frequency. In English the letter "e" is the most common and occurs a lot more often than for instance "z". So if one knows in what language a plaintext was written, one can decrypt the ciphertext from a monoalphabetic substitution cipher without knowing the substitution scheme, that is the key. One merely has to count the number of occurences of any letter of the alphabet, compare this with the frequencies of letters of the given language and match corresponding letters. This works better the longer the cipher text is. (Actually if the ciphertext is very short, the cipher might become a one-time pad which is really secure).
         \end{block}
+        \begin{block}{Side Channel Attacks}
+          While frequency attacks or brute force approaches (i.e. trying out a large number of keys) aim at the cipher itself, side channel attacks exploit weaknesses in the implementation of the cipher. For instance one might surveil the power consumption of the processor during encryption. This might reveal patterns that allow to break the cipher.
+        \end{block}
+
       \end{column}
-      \begin{column}{.3\linewidth}
+      \begin{column}{.32\linewidth}
 
         \begin{block}{The One-Time Pad}
+          \begin{wrapfigure}{l}{0.1\textwidth}
+            \vspace{-20pt}
+              \includegraphics[width=0.1\textwidth]{qr_codes/kahn_OTP.png}
+            \vspace{-20pt}
+          \end{wrapfigure}
           How could we get a substitution cipher with proper security? The issue of most substitution ciphers is their redundancy. For example the letter "e" might always be substituted by "m". This clearly allows frequency attacks as the number of occurences of "e" is just shifted to "m". In order to get rid of any redundancy or other structures that might be helpful to break the cipher the one-time pad uses an entirely random key that is just as long as the message itself. A binary example as it occurs in any computer is then
         \begin{IEEEeqnarray*}{RC}
           \text{Text}\quad & {\tt Ciao} \\
@@ -184,12 +198,6 @@
         Thus the one-time pad is properly secure. But --- as the name already suggest: never ever use it even twice. This would introduce structure and therefore turn the cipher insecure. \\
         Why isn't the OTP used all over the place if it is completely secure? Well, you need to distribute a lot of keys secretely. This is very inconvenient. %Current ciphers provide a very good level of security as the resources needed to break them exceed the computational power of recent computer by far. 
         \end{block}
-        \begin{block}{Side Channel Attacks}
-          While frequency attacks or brute force approaches (i.e. trying out a large number of keys) aim at the cipher itself, side channel attacks exploit weaknesses in the implementation of the cipher. For instance one might surveil the power consumption of the processor during encryption. This might reveal patterns that allow to break the cipher.
-        \end{block}
-
-      \end{column}
-      \begin{column}{.3\linewidth}
 
         \begin{block}{Enigma: a first machine cipher}
         \begin{wrapfigure}{l}{0.1\textwidth}
@@ -204,23 +212,33 @@
           \end{figure}
           The core of the Enigma contained three disks with internal wirings. Every time a key on the keyboard was hit the first rotated by $1/26$ of a circle. After 26 rotations of the first disk the second rotated once and after $26\times 26$ keystrokes the third one moved forward. If a key was hit, a small current basically followed the internal wirings until a lamp indicated the corresponding letter of the cipher alphabet. The cipher alphabet changes with every keystroke and repeated only after $26^3$ input letters. \par The ``mirror'' on the left enabled to use the machine as its own decipher machine. Therefore the key contained the simply the initial settings, i.e. which disks were to be inserted at what position and with which initial rotation. 
         \end{block}
+      \end{column}
+      \begin{column}{.32\linewidth}
 
         \begin{block}{Blockciphers: Lucifer}
-          All previous ciphers processed the plaintext letter by letter (and are thus called \alert{stream ciphers}). Current ciphers encrypt entire code blocks, that is a fixed number of 0's and 1's in a computer.
+          All previous ciphers processed the plaintext letter by letter (and are thus called \alert{stream ciphers}). Current ciphers encrypt entire code blocks, that is a fixed number of 0's and 1's in a computer, in each encryption step. Still the idea remains the same. A code block of 64 bits is mapped to another code block of the same size according to a scheme that is dependent on some key. The number of possible schemes has to be sufficiently large and each scheme has to be equally like to occur, in order to insure security.
+        \end{block}
+
+        \begin{block}{Key Distribution}
+          All protocols mentioned so far require that Alice and Bob share a secret key only known to them. This usually meant Alice and Bob had to meet at some point and actually agree on that key. As it turned out they could as well use a public channel to agree on a key.
+          This seems a little paradox but imagine: Alice sends Bob a box secured with padlock with just one key. Bob adds another padlock with just one key and sends the box back. As soon as Alice is sure that the other padlock is Bob's she removes hers and sends the box agai to Bob who can now open the box and access the key.  \par
+          Something similar can be done with certain mathematical constructs. Alice and Bob select each random numbers which they keep to themselves. But they share the result of a computation using those numbers publicly. Both can now use the value of the other to compute a third value using again their intial numbers. The both end up with the same value while someone else can hardly guess it from the public known numbers. 
         \end{block}
  
+        \begin{block}{Asymmetric Encryption}
+          In order to overcome the key distribution issue one can as well introduce a cipher system that relies on two keys --- a public and a private one. If Alice wants to send a message to Bob she looks up his public key in some sort of directory. She encrypts her message using this public key. Now Bob is the only one to decrypt the message again using his private key.
+        \end{block}
+
+
         \begin{block}{Encryption Tools}
         The GNU Privacy Guard provides an open source implementation of OpenPGP. There are a number of frontends for e.g. email or chat clients.
         \begin{figure}
           %\vspace{-20pt}
           \center
-            \includegraphics[width=0.2\textwidth]{qr_codes/gnupg.png} \hspace{20pt}
-            \includegraphics[width=0.2\textwidth]{qr_codes/gnupg_swlist.png}
+            \includegraphics[width=0.1\textwidth]{qr_codes/gnupg.png} \hspace{20pt}
+            \includegraphics[width=0.1\textwidth]{qr_codes/gnupg_swlist.png}
           %\vspace{-20pt}
         \end{figure}
-        \end{block}
-        \begin{block}{Secure Key Destribution: Asymmetric Encryption}
-          
         \end{block}
       \end{column}
     \end{columns}

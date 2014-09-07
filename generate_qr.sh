@@ -12,11 +12,10 @@ for line in $(seq 1 $lines)
     echo ${links[1]}
     echo ${links[0]}
     qrencode -o qr_codes/"${links[0]}".png --level=M --margin=0 "${links[1]}"
-    echo '\begin{wrapfigure}{l}{0.2\textwidth}
+    echo '% Embed QR Code for '"${links[0]}"'
+\begin{wrapfigure}{l}{0.1\textwidth}
   \vspace{-20pt}
-  \begin{center}
-    \includegraphics[width=0.2\textwidth]{qr_codes/'"${links[0]}"'.png}
-  \end{center}
+    \includegraphics[width=0.1\textwidth]{qr_codes/'"${links[0]}"'.png}
   \vspace{-20pt}
 \end{wrapfigure}' >> qr_code.tex
   done
