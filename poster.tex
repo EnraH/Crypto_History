@@ -57,6 +57,7 @@
           \coordinate (enigma) at (1.8,0);
           \coordinate (rejewski) at (3.2,0);
           \coordinate (navajo) at (4.2,0);
+          \coordinate (shannon) at (4.8,0);
           \coordinate (colossus) at (4.3,0);
           \coordinate (nsa) at (5.2,0);
           \coordinate (feistel) at (7.1,0);
@@ -95,6 +96,7 @@
           \draw[line width=1pt] ($(Vigenere) + (0,0.0)$) -- ($(Vigenere) + (0,1.0)$) node [TLcrypto,above left] {\textbf{1553} Giovan Battista Bellaso develops the poly-alphabetic so-called {\em Vigenere cipher}};
           \draw[line width=1pt] ($(one-time-pad) + (19,0.0)$) -- ($(one-time-pad) + (19,1.0)$) node [TLcrypto,above left] {\textbf{1917} the {\em one-time-pad} --- a cipher with absolute security --- is invented};
           \draw[line width=1pt] ($(enigma) + (19,0.0)$) -- ($(enigma) + (19,3.0)$) node [TLcrypto,above] {\textbf{1918}{\em ENIGMA} invented by Arthur Scherbius};
+          \draw[line width=1pt] ($(shannon) + (19,0.0)$) -- ($(shannon) + (19,2.3)$) node [TLcrypto,above] {\textbf{1948/49} {\em Claude Shannon} creates the basis for information theory and formal cryptography};
           \draw[line width=1pt] ($(navajo) + (19,0.0)$) -- ($(navajo) + (19,1.0)$) node [TLcrypto,above] {\textbf{1942} {\em Navajos} join the US army to translate, i.e. encipher messages};
           \draw[line width=1pt] ($(feistel) + (19,0.0)$) -- ($(feistel) + (19,7.0)$) node [TLcrypto,above left] {\textbf{1971} Horst Feistel develops the block cipher {\em Lucifer} for IBM};
           \draw[line width=1pt] ($(BB84) + (19,0.0)$) -- ($(BB84) + (19,7.0)$) node [TLcrypto,above right] {\textbf{1984} Charles Bennet and Gilles Brassard invent a protocol for quantum key distribution, referred to as {\em BB84}};
@@ -139,7 +141,7 @@
 
     \end{column}
     \begin{column}{.3\linewidth}
-        \begin{block}{The One-Time Pad}
+        \begin{block}{The One-Time Pad}{Perfect Security}
           The one-time pad --- a cipher with an entirely random key as long as the meassage --- was (re-)invented in 1917 (after having been described before in 1882). As long as the key is secret and the one-time pad is merely used once, as the name suggests, it is entirely secure as Shannon has shown in 1945. The major drawback though is that keys as long as the message have to be exchanged without being revealed or tampered. \par
           The hotline between Moscow and Washington D.C. established after the Cuban Missle Crisis in 1963 was secured with a one-time pad. \par
           Further it has theoretical significance in information theory and research on cryptography.

@@ -176,7 +176,7 @@
       \end{column}
       \begin{column}{.32\linewidth}
 
-        \begin{block}{The One-Time Pad}
+        \begin{block}{The One-Time Pad: Perfect security}
           \begin{wrapfigure}{l}{0.1\textwidth}
             \vspace{-20pt}
               \includegraphics[width=0.1\textwidth]{qr_codes/kahn_OTP.png}
@@ -191,7 +191,7 @@
           & \text{gives} \\
           \text{Ciphertext}\quad & {\tt 11011000\ 10011010\ 11111101\ 10110100}
         \end{IEEEeqnarray*}
-        So adding the random key (i.e. applying the XOR (either \ldots or \ldots) operation) makes the ciphertext look completely random too. Even --- not knowing the key --- could not say whether the ciphertext would stem from the word `oggi' or the word `ciao' (or any other four letter word), as they are all equally likely to appear.
+        So adding the random key (i.e. applying the XOR (either \ldots or \ldots) operation) makes the ciphertext look completely random too. Eve --- not knowing the key --- could not say whether the ciphertext would stem from the word `oggi' or the word `ciao' (or any other four letter word), as they are all equally likely to appear.
        % \begin{equation*}
        % \text{\small (s.th. entirely random)} \oplus \text{\small (s.th. not entirely random)} = \text{\small (s.th. entirely random)}
        % \end{equation*}
@@ -229,7 +229,15 @@
           In order to overcome the key distribution issue one can as well introduce a cipher system that relies on two keys --- a public and a private one. If Alice wants to send a message to Bob she looks up his public key in some sort of directory. She encrypts her message using this public key. Now Bob is the only one to decrypt the message again using his private key.
         \end{block}
 
+        \begin{block}{Quantum Key Distribution}
+          Very small objects like electrons (radius $3\times 10^{-15}m$) or photons do not behave like a football anymore but rather according to the principles of quantum mechanics. Sometimes they rather behave like waves that can sort of cancel out one another and then again they have very football-like features like momentum. \par 
+          One of the characteristics of quantum mechanics is that a measurement induces a change of the object to be measured. Thus measurements leave traces and can be detected afterwards in a suitable setup. So imagine Alice could encode some information like a cipher key in a quantum state and send it to Bob. Bob performs some measurements. By comparing what Alice has setup with what Bob has measured they can determine whether someone has taken a look at the system or not. Instead of sharing all their measurement results over a classical public information channel like an insecure internet connection they could share only a part of the measurements. If noone spied their system they can take the other part of the measurements as a shared key for e.g. the one-time pad to be really secure. \par
+          How is a measurement result, which could be just one number, enough for a shared key? If it was just one big number Alice and Bob would simply transfer it into the binary system, i.e. compute the representation of the number in 0's and 1's. Then they can use it for the one-time pad as before.
+        \end{block}
 
+        \begin{block}{Quantum Computers}
+          Not only cryptographers but also cryptanalysts would profit from a quantum revolution in computing. Modern ciphers are build on the assumptions that certain mathematical operations like the so-called factoring take a long time to be calculated on a computer. While this might hold for classical computers there exist already efficient algorithms for quantum computers compromising current ciphers once operational quantum computers are built. 
+        \end{block}
         \begin{block}{Encryption Tools}
         The GNU Privacy Guard provides an open source implementation of OpenPGP. There are a number of frontends for e.g. email or chat clients.
         \begin{figure}
