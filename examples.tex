@@ -15,12 +15,6 @@
   \usepackage{tikz}
   \usetikzlibrary{calc}
 
-  \newcommand{\gearmacro}[5]{%  
-    \foreach \i in {1,...,#1} {%
-      [rotate=(\i-1)*360/#1]  (0:#2)  arc (0:#4:#2) {[rounded corners=1.5pt]
-        -- (#4+#5:#3)  arc (#4+#5:360/#1-#5:#3)} --  (360/#1:#2)
-    }}  
-
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
   \graphicspath{{figures/}}
   \title[Examples]{Ciphers examples}
@@ -40,35 +34,60 @@
   }
   \begin{frame}{} 
     \begin{columns}[t]
-    \begin{column}{.1\linewidth}
+    \begin{column}{.2\linewidth}
       \begin{block}{Plaintext}
-        Come andò che maestro Ciliegia, falegname, trovò un pezzo di legno, che piangeva e rideva come un bambino.
-C'era una volta...
-- Un re! - diranno subito i miei piccoli lettori.
-No, ragazzi, avete sbagliato. C'era una volta un pezzo di legno.
-Non era un legno di lusso, ma un semplice pezzo da catasta, di quelli che d'inverno si mettono nelle stufe e nei caminetti per accendere il fuoco e per riscaldare le stanze.
-Non so come andasse, ma il fatto gli è che un bel giorno questo pezzo di legno capitò nella bottega di un vecchio falegname, il quale aveva nome mastr'Antonio, se non che tutti lo chiamavano maestro Ciliegia, per via della punta del suo naso, che era sempre lustra e paonazza, come una ciliegia matura.
-Appena maestro Ciliegia ebbe visto quel pezzo di legno, si rallegrò tutto e dandosi una fregatina di mani per la contentezza, borbottò a mezza voce:
-- Questo legno è capitato a tempo: voglio servirmene per fare una gamba di tavolino.
-Detto fatto, prese subito l'ascia arrotata per cominciare a levargli la scorza e a digrossarlo, ma quando fu lì per lasciare andare la prima asciata, rimase col braccio sospeso in aria, perché sentì una vocina sottile, che disse raccomandandosi:
-- Non mi picchiar tanto forte!
+Come ando che maestro Ciliegia, falegname, trovo un pezzo di legno, che piangeva e rideva come un bambino.\\
+C'era una volta...\\
+- Un re! - diranno subito i miei piccoli lettori.\\
+No, ragazzi, avete sbagliato. C'era una volta un pezzo di legno.\\
+Non era un legno di lusso, ma un semplice pezzo da catasta, di quelli che d'inverno si mettono nelle stufe e nei caminetti per accendere il fuoco e per riscaldare le stanze.\\
+Non so come andasse, ma il fatto gli e che un bel giorno questo pezzo di legno capito nella bottega di un vecchio falegname, il quale aveva nome mastr'Antonio, se non che tutti lo chiamavano maestro Ciliegia, per via della punta del suo naso, che era sempre lustra e paonazza, come una ciliegia matura.\\
+Appena maestro Ciliegia ebbe visto quel pezzo di legno, si rallegro tutto e dandosi una fregatina di mani per la contentezza, borbotto a mezza voce:\\
+- Questo legno e capitato a tempo: voglio servirmene per fare una gamba di tavolino.\\
+Detto fatto, prese subito l'ascia arrotata per cominciare a levargli la scorza e a digrossarlo, ma quando fu li per lasciare andare la prima asciata, rimase col braccio sospeso in aria, perche senti una vocina sottile, che disse raccomandandosi:\\
+- Non mi picchiar tanto forte!\\
+Figuratevi come rimase quel buon vecchio di maestro Ciliegia!\\
+Giro gli occhi smarriti intorno alla stanza per vedere di dove mai poteva essere uscita quella vocina, e non vide nessuno! Guardo sotto il banco, e nessuno; guardo dentro un armadio che stava sempre chiuso, e nessuno; guardo nel corbello dei trucioli e della segatura, e nessuno; apri l'uscio di bottega per dare un'occhiata anche sulla strada, e nessuno! O dunque?...\\
       \end{block}
     \end{column}
-    \begin{column}{.1\linewidth}
+    \begin{column}{.2\linewidth}
         \begin{block}{Caesar Shift}
-Frph dqgò fkh pdhvwur Flolhjld, idohjqdph, wuryò xq shccr gl ohjqr, fkh sldqjhyd h ulghyd frph xq edpelqr.
-F'hud xqd yrowd...
-- Xq uh! - gludqqr vxelwr l plhl slffrol ohwwrul.
-Qr, udjdccl, dyhwh vedjoldwr. F'hud xqd yrowd xq shccr gl ohjqr.
-Qrq hud xq ohjqr gl oxvvr, pd xq vhpsolfh shccr gd fdwdvwd, gl txhool fkh g'lqyhuqr vl phwwrqr qhooh vwxih h qhl fdplqhwwl shu dffhqghuh lo ixrfr h shu ulvfdogduh oh vwdqch.
-Qrq vr frph dqgdvvh, pd lo idwwr jol è fkh xq eho jlruqr txhvwr shccr gl ohjqr fdslwò qhood erwwhjd gl xq yhffklr idohjqdph, lo txdoh dyhyd qrph pdvwu'Dqwrqlr, vh qrq fkh wxwwl or fkldpdydqr pdhvwur Flolhjld, shu yld ghood sxqwd gho vxr qdvr, fkh hud vhpsuh oxvwud h sdrqdccd, frph xqd flolhjld pdwxud.
-Dsshqd pdhvwur Flolhjld heeh ylvwr txho shccr gl ohjqr, vl udoohjuò wxwwr h gdqgrvl xqd iuhjdwlqd gl pdql shu od frqwhqwhccd, eruerwwò d phccd yrfh:
-- Txhvwr ohjqr è fdslwdwr d whpsr: yrjolr vhuyluphqh shu iduh xqd jdped gl wdyrolqr.
-Ghwwr idwwr, suhvh vxelwr o'dvfld duurwdwd shu frplqflduh d ohydujol od vfrucd h d gljurvvduor, pd txdqgr ix oì shu odvflduh dqgduh od sulpd dvfldwd, ulpdvh fro eudfflr vrvshvr lq duld, shufké vhqwì xqd yrflqd vrwwloh, fkh glvvh udffrpdqgdqgrvl:
-- Qrq pl slffkldu wdqwr iruwh!
+Frph dqgr fkh pdhvwur Flolhjld, idohjqdph, wuryr xq shccr gl ohjqr, fkh sldqjhyd h ulghyd frph xq edpelqr.\\
+F'hud xqd yrowd...\\
+- Xq uh! - gludqqr vxelwr l plhl slffrol ohwwrul.\\
+Qr, udjdccl, dyhwh vedjoldwr. F'hud xqd yrowd xq shccr gl ohjqr.\\
+Qrq hud xq ohjqr gl oxvvr, pd xq vhpsolfh shccr gd fdwdvwd, gl txhool fkh g'lqyhuqr vl phwwrqr qhooh vwxih h qhl fdplqhwwl shu dffhqghuh lo ixrfr h shu ulvfdogduh oh vwdqch.\\
+Qrq vr frph dqgdvvh, pd lo idwwr jol h fkh xq eho jlruqr txhvwr shccr gl ohjqr fdslwr qhood erwwhjd gl xq yhffklr idohjqdph, lo txdoh dyhyd qrph pdvwu'Dqwrqlr, vh qrq fkh wxwwl or fkldpdydqr pdhvwur Flolhjld, shu yld ghood sxqwd gho vxr qdvr, fkh hud vhpsuh oxvwud h sdrqdccd, frph xqd flolhjld pdwxud.\\
+Dsshqd pdhvwur Flolhjld heeh ylvwr txho shccr gl ohjqr, vl udoohjur wxwwr h gdqgrvl xqd iuhjdwlqd gl pdql shu od frqwhqwhccd, eruerwwr d phccd yrfh:\\
+- Txhvwr ohjqr h fdslwdwr d whpsr: yrjolr vhuyluphqh shu iduh xqd jdped gl wdyrolqr.\\
+Ghwwr idwwr, suhvh vxelwr o'dvfld duurwdwd shu frplqflduh d ohydujol od vfrucd h d gljurvvduor, pd txdqgr ix ol shu odvflduh dqgduh od sulpd dvfldwd, ulpdvh fro eudfflr vrvshvr lq duld, shufkh vhqwl xqd yrflqd vrwwloh, fkh glvvh udffrpdqgdqgrvl:\\
+- Qrq pl slffkldu wdqwr iruwh!\\
+Iljxudwhyl frph ulpdvh txho exrq yhffklr gl pdhvwur Flolhjld!\\
+Jlur jol rffkl vpduulwl lqwruqr dood vwdqcd shu yhghuh gl gryh pdl srwhyd hvvhuh xvflwd txhood yrflqd, h qrq ylgh qhvvxqr! Jxdugr vrwwr lo edqfr, h qhvvxqr; jxdugr ghqwur xq dupdglr fkh vwdyd vhpsuh fklxvr, h qhvvxqr; jxdugr qho fruehoor ghl wuxflrol h ghood vhjdwxud, h qhvvxqr; dsul o'xvflr gl erwwhjd shu gduh xq'rffkldwd dqfkh vxood vwudgd, h qhvvxqr! R gxqtxh?...\\
         \end{block}
     \end{column}
-    \begin{column}{.3\linewidth}
+    \begin{column}{.2\linewidth}
+      \begin{block}{Vigenere Cipher}
+\alert{Key: Pinocchio}\par
+Rwzs cpkw qwm zoguazc Rqywgipi, tptrupctm, hgwic wp wmnow qw ngnvc, rpr dkcuoski r fkfldo rwzs wp iiaqqac.\\
+E'gyi ici icnvh...\\
+- Cb gm! - qwtcuvc hcowvq p uwtq cweevtw amghqtp.\\
+Vc, gitobbp, ijtbr gdcntwpbb. Q'gth cbp dbzvc bv dthmc fk smucw.\\
+Acp gyi ic trupq kq zjafc, oc bv gtuczkel xsohb rc ehbohbn, rk sbmzaq pvg f'pvjtzac uk tmhiwac pgsts hbhtg g umw rizwpgabw eme oeelvrtzr wn hbwqd m cst tpaqptqotg sm giiang.\\
+Pvv gd kbag culohar, ac ks noibb unk l kvt ca pgn nqcgvb ewgzbc emmnq fp tsvvb qcrpbc cmyzc dvbhton rk wu dsrkuwq hhtsvvnag, ks yiptr oxgci bdur acuaz'Ocbbbkq, zm bdv pvg vbbhx tb qjkhuokiac oclahgw Pwnklowp, xrf xkh lsatn dwpai rtt fiq phac, rpr stc zmaezr zwuazo t xncpcgho, rwzs wph kwaqrukc tihjzn.\\
+Orrlvo birgvtv Kwaqrukc ljpt dvgvq xcsa xrnbq kq ztoac, uk yizamtfq vbbhd m qopfvaw jvn ttgnihxvn rk ohvw eme zc evvhtvgsbbh, jcgjbhvq h usohn jqel:\\
+- Yitagc ngnvc t kndkvhbc p brarq: cwuaqb ggtcqfbmas rgy nogm hbc ihupp lv hcxvtwcw.\\
+Qsvvv noibb, dtgzm gjjvhq n'haqxi nftqaihp xrf eqtqbrqnfg c smjpztzk nh aqdzmo g c kqugwfgctsw, ap yhopfv ni aq cst nhaqxies cpkift tn dtkti ohkvovc, yqapar qqn izorkvc uqzxshw vb ctpi, dtzpvg ulvhx cao xqjqbp abhvksm, qwm qwuul zorkbacpkibswfw:\\
+- Pqu uw eqpqjkhz hpvgc hqybs!\\
+Uqtitcamjx kbag tpuohm dign iccc drqejpw rx unsuvyw Qxtvsikh!\\
+Owgw tzk qjkvx azottpbw xvgctpv izai fhcpgi dtz isfgym rx lbjg ohq ddbrjc gzasgm hgekai ejmyzc xvkwci, r bqp cqrt vrguwuw! Ujierq uvbhd qy pcpjw, s cmfgwpv; oipzqc fgubfd ca otohlwd kus uvhdo hmzdtg jpwjab, s pgzaicw; tictkw btt pctdltzd lrw vtbkwdtv s fgsto hmtovwyi, s cmfgwpv; idgq y'iuepw rx jbhvgni dtz qotg bv'crkuwcvh ibrpr gwnsi giznrc, g umghcac! Q fbvejm?...\\
+      \end{block}
+    \end{column}
+    \begin{column}{.2\linewidth}
+      \begin{block}{Enigma}
+        \alert{Setting: Walzen: B. III-V-I (A,A,A) / Ringe: 01 01 01 / Stecker: AG}\par
+      rtorq ermuv xlbpe gupao davww dcwea lkjrr avyev tpkkt rirge cbpus ghhkt ajkbt gsjfa lmtzu qrayr lssbp mpexc wpobp hdaqv fnvyl mgmpz ngmbx fwgky hmktr zngqc zotue ieygd rvzrx unzmx doufl tzzzs qgwps zxekm oruwi katqi gsrej sxliw wiyun ttafg trnqc qkfvq dbzsg dwapq dhvlj yvswc dxncv prxom kgovn hudbk lbida bwspf lijpq sgidg orexs lhkze rhbaj nchws gpzoi segdw ztfko mpzio txwyb npeds fzchx ujxok rmhag ggumg sshzl hfnfj pkkzu iaxwf mmhgz ytyvj ggjkg uiqoo bbgzb mnigo ksrlf lhmpm acwwk gkvxt mdksn rdlih ynfgb puuuz verht jormb lhhsv dshqt deayj yhapu equde rctce jyqlz jfcvj atmsw adwmp hyvaz uutac lbfhv hbfbw twfyi gxkre ywqok vknev kotsx icjmb ubwxb chhsm patqq tkkst dbibo fccgw vnwee psmcw cgjed unfci iasva hxmmb pmvsb iaxcb yjejr geijb ddwrx lymdp xlwlj dymzp pgeuf mqyut paony qfjbb nnjdv tvvxy eikvj sszhl soyvs luwnq zzlht xsbsc zpmrw lmxlw unkyu qijlg ymdhh vxhze xbgnm ecigo qohnp bjblp ueizo jzslw jtxvr rpqip yojlk bopwz lwzud mjtuc ntowe jkfdi ypodr uejei vtovd jwplz nqjmi zkgew yqzin dcusr osvjd febor iafoy cevdw odztt xsrdi fyxho sdiah wduko cgmny khfzt pyara vaemu nabhe dewzx ucmfg jsgzv gsbdk yhgcq tkyrw zpbcb vgzha cvpnu mwgcc oupjd ymald vdycq qhhaj rmnnq zhvyf nlivf jakia iokdi snaxf xsfuo kbscr rxnlb shifc xlsix rlqyc nrhut hhhto xyxjx cyzpw qoquq mfzos ryfjc yhzuq plrhj gvubj qidpk vozfz bqvul rsuyn myjuh nygae pzoeb sskxa bfgkv kmhxe gewbv edzlm dbsjv xmplx nfwaq kcouz yoavk lwrfd xxbby izxgb qbuuq pkevj bqmer obyje kwrbu hwbmq cnrsm juxbf byzzp xlcvx lsilt pymci yxpsv fqqqu nvghs rdvuw qjwmw eukzg rvtmh eiugq awvmh egdts rrdhh wtqvj rkljw b
+      \end{block}
     \end{column}
     \end{columns}
   \end{frame}
