@@ -1,0 +1,118 @@
+\documentclass[final,hyperref={pdfpagelabels=false}]{beamer}
+\mode<presentation>
+  {
+   % \usetheme{Berlin}
+   \usetheme{USI}
+  }
+  %\usepackage{times}
+  \usepackage{amsmath,amsthm, amssymb, amsfonts, latexsym}
+  \boldmath
+  \usepackage[english]{babel}
+  \usepackage[latin1]{inputenc}
+  \usepackage[orientation=portrait,size=a0,scale=1.0,debug]{beamerposter}
+  \usepackage{verbatim}
+  \usepackage{IEEEtrantools}
+  \usepackage{tikz}
+  \usetikzlibrary{calc}
+
+%  \newcommand{\gearmacro}[5]{%  
+%    \foreach \i in {1,...,#1} {%
+%      [rotate=(\i-1)*360/#1]  (0:#2)  arc (0:#4:#2) {[rounded corners=1.5pt]
+%        -- (#4+#5:#3)  arc (#4+#5:360/#1-#5:#3)} --  (360/#1:#2)
+%    }}  
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+  \graphicspath{{figures/}}
+  \title[Crypto History]{La Storia della Crittografia}
+  \author[Hansen and Wolf]{Arne Hansen e Prof Stefan Wolf}
+  \institute[USI]{Informatica Quantistica e Crittografia, USI Lugano}
+  \date{Jul. 31th, 2007}
+
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+  \begin{document}
+  \tikzset{
+    TLstegan/.style = {fill = gray!20!white,
+                      draw=AHdarkblue,align= left,text width=5cm,font=\tiny,line width=2pt},
+    TLcrypto/.style = {fill = gray!20!white,
+                      draw=AHdarkorange,align= left,text width=5cm,font=\tiny,line width=2pt},
+    TLphases/.style = {color=black,left,text width=10cm,font=\tiny,line width=0pt}
+  }
+  \begin{frame}{} 
+    \vfill
+    \vfill
+    \begin{block}{\large Cronologia della Crittografia}
+      \begin{figure}
+      \centering
+      \begin{tikzpicture}[scale=1.9]
+          % define coordinates
+          \coordinate (Herodotus) at (-5,0);
+          \coordinate (Caesar) at (-0.6,0);
+          \coordinate (scytale) at (-4.5,0);
+          \coordinate (freq-analysis) at (9.5,0);
+          \coordinate (Vigenere) at (15.53,0);
+          \coordinate (Babbage) at (18.50,0); 
+          % forall coordinates in 20th century: magnify by factor 10
+          \coordinate (one-time-pad) at (1.7,0);
+          \coordinate (enigma) at (1.8,0);
+          \coordinate (rejewski) at (3.2,0);
+          \coordinate (navajo) at (4.2,0);
+          \coordinate (shannon) at (4.8,0);
+          \coordinate (colossus) at (4.3,0);
+          \coordinate (nsa) at (5.2,0);
+          \coordinate (feistel) at (7.1,0);
+          \coordinate (des) at (7.6,0);
+          \coordinate (diffie-hellman) at (7.6,0);
+          \coordinate (rsa) at (7.7,0);
+          \coordinate (BB84) at (8.4,0);
+          \coordinate (pgp) at (9.1,0); 
+          % phases of cryptography
+          \fill [AHdarkorange!30] ($(Caesar) + (0.0,-8)$) rectangle (30,-7);
+          \draw[line width=3pt, color=AHdarkorange] (Caesar) -- ($(Caesar) + (0.0,-8)$) node[TLphases, above right] {cifrario di sostituzione monoalfabetico};
+          \draw[line width=3pt, color=AHdarkorange] (Vigenere) -- ($(Vigenere) + (0.0,-8)$) node[TLphases, above right] {cifrario di sostituzione {\em poli}alfabetico};
+          \draw[line width=3pt, color=AHdarkorange] ($(enigma) + (19,0)$) -- ($(enigma) + (19.0,-8)$) node[TLphases, above right] {{\em macchine} cifrarie polialfabetiche};
+          % create baseline
+          \draw[line width=2pt,dashed] (-10,0) -- (-5.20,0) ;
+          \draw[line width=2pt] (-5.20,0) -- (32,0);
+          \draw[line width=5pt] (18.8,0) -- (31.2,0);
+          \coordinate (cryptography) at (-9.8,3);
+          \coordinate (cryptanalysis) at (-9.8,-3);
+          \draw[line width=6pt,color=black!80] (25,0) circle (6.2); 
+          \node[rotate=90] (label) at (cryptography) {\small \textsc{Crittografia}};
+          \node[rotate=90] (label) at (cryptanalysis) {\small \textsc{Crittoanalisi}};
+          \foreach \t in {-5,...,18}{
+            \draw[line width=2pt] (\t,-.2) -- (\t,.2) node [below=.5cm] {\tiny \t 00};
+            \draw[line width=1pt] ($(\t,-.1) + (.5,0)$) -- ($(\t,.1) + (0.5,0)$);}
+          \foreach \t in {0,...,12}{
+            \draw[line width=3pt] let \n1 = {int(1900+\t*10)} in
+              ($(19,0)+(\t,-.2)$) -- ($(19,0)+(\t,.2)$) node [below=.6cm] {\tiny \n1};
+            \draw[line width=2pt] ($(19.5,0)+(\t,-.1)$) -- ($(19.5,0)+(\t,.1)$);}
+            
+          % declare nodes
+          % cryptographic achievement
+          \draw[line width=1pt] ($(Herodotus) + (0,0.0)$) -- ($(Herodotus) + (0,1.0)$) node [TLstegan,above left] {Lo storico greco {\em Erodoto} discute della steganografia};
+          \draw[line width=1pt] ($(scytale) + (0,0.0)$) -- ($(scytale) + (0,4.0)$) node [TLcrypto,above] {\textbf{ V secolo AC} {\em Scitala}: strumento crittografico utilizzato dagli spartani};
+          \draw[line width=1pt] ($(Caesar) + (0,0.0)$) -- ($(Caesar) + (0,1.0)$) node [TLcrypto,above right] {{\em Cifrario di Cesare}: crittografa attraverso lo spostamento di lettere dell'alfabeto};
+          \draw[line width=1pt] ($(Vigenere) + (0,0.0)$) -- ($(Vigenere) + (0,1.0)$) node [TLcrypto,above left] {\textbf{1553} Giovan Battista Bellaso sviluppa il cifrario polialfabetico chiamato {\em cifrario di Vigen\`{e}re}};
+          \draw[line width=1pt] ($(one-time-pad) + (19,0.0)$) -- ($(one-time-pad) + (19,1.0)$) node [TLcrypto,above left] {\textbf{1917} il {\em cifrario di Vernam} --- un cifrario con sicurezza assoluta --- \`{e} inventato};
+          \draw[line width=1pt] ($(enigma) + (19,0.0)$) -- ($(enigma) + (19,3.0)$) node [TLcrypto,above] {\textbf{1918}{\em ENIGMA} viene inventata da Arthur Scherbius};
+          \draw[line width=1pt] ($(shannon) + (19,0.0)$) -- ($(shannon) + (19,2.3)$) node [TLcrypto,above] {\textbf{1948/49} {\em Claude Shannon} getta le basi per la teoria dell'informazione e la crittografia formale};
+          \draw[line width=1pt] ($(navajo) + (19,0.0)$) -- ($(navajo) + (19,1.0)$) node [TLcrypto,above] {\textbf{1942} {\em Navajos} viene utilizzato dall'esercito americano per crittografare i messaggi};
+          \draw[line width=1pt] ($(feistel) + (19,0.0)$) -- ($(feistel) + (19,7.0)$) node [TLcrypto,above left] {\textbf{1971} Horst Feistel sviluppa il cifrario a blocco {\em Lucifer} per IBM};
+          \draw[line width=1pt] ($(BB84) + (19,0.0)$) -- ($(BB84) + (19,7.0)$) node [TLcrypto,above right] {\textbf{1984} Charles Bennet e Gilles Brassard inventano un protocollo per la distribuzione di chiavi quantistiche, chiamato {\em BB84}};
+          \draw[line width=1pt] ($(des) + (19,0.0)$) -- ($(des) + (19,4.0)$) node [TLcrypto,above left] {\textbf{1976} Una versione di Lucifer viene utilizzata come {\em Data Encryption Standard (DES)}};
+          \draw[line width=1pt] ($(rsa) + (19,0.0)$) -- ($(rsa) + (19,4.0)$) node [TLcrypto,above right] {\textbf{1977} Ron Rivest, Adi Shamir e Leonard Aldeman sviluppano una algoritmo di crittografia asimmetrico {\em con chiave pubblica} {\em RSA} (al contrario di Diffie)};
+          \draw[line width=1pt] ($(diffie-hellman) + (19,0.0)$) -- ($(diffie-hellman) + (19,0.5)$) node [TLcrypto,above] {\textbf{1976} Martin Hellman, Whitfield Diffie e Ralph Merkle pubblicano un protocollo per lo {\em scambio di chiavi di crittografia}};
+          \draw[line width=1pt] ($(pgp) + (19,0.0)$) -- ($(pgp) + (19,0.5)$) node [TLcrypto,above right] {\textbf{1991} Phil Zimmermann crea un software contenente diversi algoritmi simmetrici, asimmetrici e di firma digitale chiamato {\em Pretty Good Privacy} e lo distribuisce pubblicamente};
+          % cryptoanalytic achievements
+          \draw[line width=1pt] ($(freq-analysis) + (0,0.)$) -- ($(freq-analysis) + (0,-1.0)$) node [TLcrypto,below left] {{\em analisi di frequenza}: di cifrari monoalfabetici};
+          \draw[line width=1pt] ($(Babbage) + (0,0.)$) -- ($(Babbage) + (0,-1.0)$) node [TLcrypto,below left] {\textbf{1850s} {\em Charles Babbage} viola i cifrari polialfabetici};
+          \draw[line width=1pt] ($(rejewski) + (19,0)$) -- ($(rejewski) + (19,-3.0)$) node [TLcrypto,below left] {\textbf{1932} {\em Marian Rejewski} viola Enigma};
+          \draw[line width=1pt] ($(colossus) + (19,0)$) -- ($(colossus) + (19,-1.0)$) node [TLcrypto,below left] {\textbf{1943} Tommy Flower costruisce la macchina {\em Colossus} di Max Newman, il primo computer moderno};
+          \draw[line width=1pt] ($(nsa) + (19,0)$) -- ($(nsa) + (19,-1.0)$) node [TLcrypto,below right] {\textbf{1952} la {\em National Security Agency (NSA)} viene fondata};
+      \end{tikzpicture}
+      \end{figure}
+      La cronologia mostra le pi\`{u} grandi conquiste nella storia della crittografia e della crittoanalisi. Sul fondo viene delineata l'evoluzione dei cifrari di sostituzione dal quello monoalfabetico a quello polialfabetico, utilizzato oggigiorno nei computer.
+    \end{block}
+    \end{frame}
+  \end{document}
